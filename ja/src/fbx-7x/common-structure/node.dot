@@ -1,0 +1,35 @@
+// Compile to an SVG by `dot -Tsvg node.dot -o node.svg`.
+
+digraph node_structure {
+	graph [
+		rankdir = LR,
+	];
+	node [
+		shape = box;
+	];
+
+	parent [
+		shape = "record",
+		label = "{<all>ノード | {<header>ヘッダ | <attributes>属性 | <children>子ノード}}",
+	];
+	parent_name [
+		label = "ノード名",
+	];
+	parent:header:e -> parent_name:w;
+	parent_attrs [
+		shape = "record",
+		label = "{属性1 | 属性2 | 属性3 | …}",
+	];
+	parent:attributes:e -> parent_attrs:w;
+	children [
+		shape = "record",
+		label = "{
+			<all> | {
+				{ノード | {ヘッダ | 属性 | 子ノード}} |
+				{ノード | {ヘッダ | 属性 | 子ノード}} |
+				⋮
+			}
+		}",
+	];
+	parent:children0:e -> children:all:w;
+}
