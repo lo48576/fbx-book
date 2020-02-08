@@ -4,7 +4,7 @@ A book about FBX format.
 
 ## Available languages
 
-* [Japanese / 日本語](ja/README.md)
+* [Japanese / 日本語](ja/README.md) ([rendered](https://lo48576.github.io/fbx-book/ja/))
 
 ## License
 
