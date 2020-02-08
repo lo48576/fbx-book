@@ -17,4 +17,13 @@ before_script:
   - tar xf mdbook-v${VERSION}-x86_64-unknown-linux-gnu.tar.gz
 
 script:
-  - ./mdbook build ${TARGET_LANG} && ./mdbook test ${TARGET_LANG}
+  - mkdir -p pages && ./mdbook build ${TARGET_LANG} && ./mdbook test ${TARGET_LANG} && test ! -e pages/${TARGET_LANG} && mv ${TARGET_LANG}/book pages/${TARGET_LANG}
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local-dir: pages
+  keep-history: false
+  on:
+    branch: master
