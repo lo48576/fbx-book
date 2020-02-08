@@ -1,0 +1,6 @@
+[book]
+authors = ["YOSHIOKA Takuma"]
+language = "ja"
+multilingual = false
+src = "src"
+title = "FBX仕様解説"
