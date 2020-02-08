@@ -43,6 +43,8 @@ FBX 形式はプロプライエタリであり、その正確な仕様は公開�
 
 しかし、修正、追加、更新、翻訳などの貢献は歓迎する。
 
+リポジトリは <https://github.com/lo48576/fbx-book/tree/master/ja> である。
+
 ## ライセンス
 
 ![Licensed under CC-BY 4.0](cc-by-4.0.svg)
