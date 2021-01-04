@@ -10,7 +10,7 @@ rust:
   - stable
 
 env:
-  - VERSION=0.3.5 TARGET_LANG=ja
+  - VERSION=0.4.5 TARGET_LANG=ja
 
 before_script:
   - curl -LO https://github.com/rust-lang-nursery/mdBook/releases/download/v${VERSION}/mdbook-v${VERSION}-x86_64-unknown-linux-gnu.tar.gz
