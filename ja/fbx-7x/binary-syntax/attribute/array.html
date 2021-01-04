@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>配列型 - FBX仕様解説</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../../../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../../../favicon.png">
+        
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../../introduction.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="../../../notation/index.html"><strong aria-hidden="true">2.</strong> 本書での記法</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/index.html"><strong aria-hidden="true">3.</strong> FBX 7.x</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../fbx-7x/common-structure/index.html"><strong aria-hidden="true">3.1.</strong> 共通の構造</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../fbx-7x/common-structure/node.html"><strong aria-hidden="true">3.1.1.</strong> ノード</a></li></ol></li><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/index.html"><strong aria-hidden="true">3.2.</strong> バイナリ文法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/value.html"><strong aria-hidden="true">3.2.1.</strong> 基本型の値の表現</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/file.html"><strong aria-hidden="true">3.2.2.</strong> ファイル構造</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/node.html"><strong aria-hidden="true">3.2.3.</strong> ノード</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/attribute/index.html"><strong aria-hidden="true">3.2.4.</strong> 属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/attribute/primitive.html"><strong aria-hidden="true">3.2.4.1.</strong> プリミティブ型</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/attribute/array.html" class="active"><strong aria-hidden="true">3.2.4.2.</strong> 配列型</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/binary-syntax/attribute/special.html"><strong aria-hidden="true">3.2.4.3.</strong> 特殊型</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../fbx-7x/text-syntax/index.html"><strong aria-hidden="true">3.3.</strong> テキスト文法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../fbx-7x/text-syntax/basics.html"><strong aria-hidden="true">3.3.1.</strong> 基本</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/text-syntax/node.html"><strong aria-hidden="true">3.3.2.</strong> ノード</a></li><li class="chapter-item expanded "><a href="../../../fbx-7x/text-syntax/attribute.html"><strong aria-hidden="true">3.3.3.</strong> 属性</a></li></ol></li><li class="chapter-item expanded "><a href="../../../fbx-7x/schema/index.html"><strong aria-hidden="true">3.4.</strong> スキーマ</a></li></ol></li><li class="chapter-item expanded "><a href="../../../references/index.html"><strong aria-hidden="true">4.</strong> 参考文献</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">FBX仕様解説</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#配列型" id="配列型">配列型</a></h1>
+<p>配列型は以下のような追加ヘッダを持つ。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="#num-elems">要素数</a></td><td>4 bytes</td><td></td></tr>
+<tr><td><a href="#encoding">エンコーディング</a></td><td>4 bytes</td><td>圧縮形式など</td></tr>
+<tr><td><a href="#bytelen">データのバイト長</a></td><td>4 bytes</td><td>ファイル中に占める長さ</td></tr>
+</tbody></table>
+<p>よって属性全体としては以下のようになる。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
+<tr><td><a href="README.html#type-codes">型コード</a></td><td>1 byte</td></tr>
+<tr><td><a href="#num-elems">要素数</a></td><td>4 bytes</td></tr>
+<tr><td><a href="#encoding">エンコーディング</a></td><td>4 bytes</td></tr>
+<tr><td><a href="#bytelen">データのバイト長</a></td><td>4 bytes</td></tr>
+<tr><td><a href="#data">データ</a></td><td>(可変長、指定された長さ)</td></tr>
+</tbody></table>
+<h2><a class="header" href="#要素数span-idnum-elems-----span" id="要素数span-idnum-elems-----span">要素数<span id="num-elems"><!-- --></span></a></h2>
+<p>配列の要素の個数である。
+バイト長ではない。</p>
+<h2><a class="header" href="#エンコーディングspan-idencoding-----span" id="エンコーディングspan-idencoding-----span">エンコーディング<span id="encoding"><!-- --></span></a></h2>
+<p>配列データ本体の圧縮形式など。
+以下は一覧である。</p>
+<table><thead><tr><th>値</th><th>エンコーディング</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="#encoding--0"><code>0</code></a></td><td>非圧縮</td><td>無加工</td></tr>
+<tr><td><a href="#encoding--1"><code>1</code></a></td><td>zlib 圧縮</td><td>RFC 1950</td></tr>
+</tbody></table>
+<p>これ以外の値は観測されていないが、 FBX 形式はプロプライエタリであるため他のエンコーディングが存在する可能性は否定できない。
+とはいえ実用上はこの2つに対応すれば十分であろう。</p>
+<h3><a class="header" href="#0-非圧縮span-idencoding--0-----span" id="0-非圧縮span-idencoding--0-----span">0: 非圧縮<span id="encoding--0"><!-- --></span></a></h3>
+<p>無加工。</p>
+<h3><a class="header" href="#1-zlib-圧縮span-idencoding--1-----span" id="1-zlib-圧縮span-idencoding--1-----span">1: zlib 圧縮<span id="encoding--1"><!-- --></span></a></h3>
+<p>配列は zlib 圧縮されている。
+zlib ヘッダが必要である (つまり生の deflate ストリームではない)。</p>
+<h2><a class="header" href="#データのバイト長span-idbytelen-----span" id="データのバイト長span-idbytelen-----span">データのバイト長<span id="bytelen"><!-- --></span></a></h2>
+<p>共通ヘッダと追加ヘッダを除いて、配列データ本体が FBX データ中に占めるサイズ。
+配列が圧縮されていれば、展開後でなく圧縮後のバイト長を使う。</p>
+<h2><a class="header" href="#データspan-iddata-----span" id="データspan-iddata-----span">データ<span id="data"><!-- --></span></a></h2>
+<p>素朴に値を並べたものである。
+パディングや順序の入れ替えなどは一切ない。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../../fbx-7x/binary-syntax/attribute/primitive.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../../../fbx-7x/binary-syntax/attribute/special.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../../../fbx-7x/binary-syntax/attribute/primitive.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../../../fbx-7x/binary-syntax/attribute/special.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

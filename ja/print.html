@@ -1,0 +1,930 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>FBX仕様解説</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> はじめに</a></li><li class="chapter-item expanded "><a href="notation/index.html"><strong aria-hidden="true">2.</strong> 本書での記法</a></li><li class="chapter-item expanded "><a href="fbx-7x/index.html"><strong aria-hidden="true">3.</strong> FBX 7.x</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fbx-7x/common-structure/index.html"><strong aria-hidden="true">3.1.</strong> 共通の構造</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fbx-7x/common-structure/node.html"><strong aria-hidden="true">3.1.1.</strong> ノード</a></li></ol></li><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/index.html"><strong aria-hidden="true">3.2.</strong> バイナリ文法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/value.html"><strong aria-hidden="true">3.2.1.</strong> 基本型の値の表現</a></li><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/file.html"><strong aria-hidden="true">3.2.2.</strong> ファイル構造</a></li><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/node.html"><strong aria-hidden="true">3.2.3.</strong> ノード</a></li><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/attribute/index.html"><strong aria-hidden="true">3.2.4.</strong> 属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/attribute/primitive.html"><strong aria-hidden="true">3.2.4.1.</strong> プリミティブ型</a></li><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/attribute/array.html"><strong aria-hidden="true">3.2.4.2.</strong> 配列型</a></li><li class="chapter-item expanded "><a href="fbx-7x/binary-syntax/attribute/special.html"><strong aria-hidden="true">3.2.4.3.</strong> 特殊型</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="fbx-7x/text-syntax/index.html"><strong aria-hidden="true">3.3.</strong> テキスト文法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fbx-7x/text-syntax/basics.html"><strong aria-hidden="true">3.3.1.</strong> 基本</a></li><li class="chapter-item expanded "><a href="fbx-7x/text-syntax/node.html"><strong aria-hidden="true">3.3.2.</strong> ノード</a></li><li class="chapter-item expanded "><a href="fbx-7x/text-syntax/attribute.html"><strong aria-hidden="true">3.3.3.</strong> 属性</a></li></ol></li><li class="chapter-item expanded "><a href="fbx-7x/schema/index.html"><strong aria-hidden="true">3.4.</strong> スキーマ</a></li></ol></li><li class="chapter-item expanded "><a href="references/index.html"><strong aria-hidden="true">4.</strong> 参考文献</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">FBX仕様解説</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#はじめに" id="はじめに">はじめに</a></h1>
+<p>本文書は、 3D コンテンツを表現する形式である FBX 形式について、構造と意味の解説を試みるものである。</p>
+<h2><a class="header" href="#対象読者目標" id="対象読者目標">対象読者、目標</a></h2>
+<p>対象読者は以下の通りである。</p>
+<ul>
+<li>FBX データを何らかの方法で自作プログラムなどから読み書きする必要のある人</li>
+<li>FBX データの読み書きのためのライブラリ等を実装する人</li>
+<li>FBX を読み書きするプログラムのバグと思しき挙動を分析したい人</li>
+<li>3D コンテンツの内部に興味を持っている人</li>
+</ul>
+<p>本文書の目標は以下の通りである。</p>
+<ul>
+<li>読者は FBX のバイナリ形式及びテキスト形式のデータを直接読み、ある程度理解できるようになる。</li>
+<li>読者は FBX データを必要に応じて低レベルで編集したり、壊れたデータがどう壊れているか説明できるようになる。</li>
+<li>プログラミングのできる読者は、 FBX データを読み書きする簡単なプログラムを実装できるようになる。</li>
+</ul>
+<p>以下は本文書の目標<strong>ではない</strong>。</p>
+<ul>
+<li>読者はモデリングソフトを利用して 3D コンテンツを作成し、 FBX 形式で出力できるようになる。
+<ul>
+<li>本文書ではモデリング自体についての解説は行わない。</li>
+</ul>
+</li>
+<li>読者は FBX データを描画するためのグラフィックス技術を理解する。
+<ul>
+<li>部分的な解説は行うかもしれないが、あくまでデータの意味の説明に留める。</li>
+</ul>
+</li>
+<li>読者は既存の FBX 読み書きのためのプログラムやライブラリの利用方法を理解する。
+<ul>
+<li>本文書では特定のプログラムやライブラリのマニュアルではない。</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#fbx-形式とは" id="fbx-形式とは">FBX 形式とは</a></h2>
+<p>それを知らない人がこの文書を読んで得るものは少ないであろう。</p>
+<p>(本文書のリポジトリはプルリクエストを歓迎しています。)</p>
+<h2><a class="header" href="#免責" id="免責">免責</a></h2>
+<p>本文書は様々な場所で集め、あるいはファイルを観察して得た知識をまとめたものである。</p>
+<p>FBX 形式はプロプライエタリであり、その正確な仕様は公開されていない。
+また公式に配布されている FBX SDK もソースコードは公開されていない。
+そのため、情報の正確性についての保障はされない。
+また、今後のフォーマットの更新などへの追従や誤りの訂正も保障されない。</p>
+<p>しかし、修正、追加、更新、翻訳などの貢献は歓迎する。</p>
+<p>リポジトリは <a href="https://github.com/lo48576/fbx-book/tree/master/ja">https://github.com/lo48576/fbx-book/tree/master/ja</a> である。</p>
+<h2><a class="header" href="#ライセンス" id="ライセンス">ライセンス</a></h2>
+<p><img src="cc-by-4.0.svg" alt="Licensed under CC-BY 4.0" /></p>
+<p>この 作品 は <a href="https://creativecommons.org/licenses/by/4.0/deed.ja">クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。</p>
+<h1><a class="header" href="#本書での記法" id="本書での記法">本書での記法</a></h1>
+<p>本章では、本書におけるデータ型や値の記法を導入する。
+これらは本書での解説のための記法であり、 FBX データ内部にそのような記法が出現することを意味しない。</p>
+<h2><a class="header" href="#型の表現" id="型の表現">型の表現</a></h2>
+<p>本書では原則的に、データ型の表現としてプログラミング言語 Rust の型の記法を用いる。
+具体的には、以下のようなものを用いる。</p>
+<table><thead><tr><th>表記</th><th>内容</th><th>補足・詳細</th></tr></thead><tbody>
+<tr><td><code>bool</code></td><td>真偽値</td><td>値は <code>true</code> と <code>false</code> 。内部表現が <code>0</code> と <code>1</code> とは限らない。</td></tr>
+<tr><td><code>u8</code></td><td>符号なし8ビット整数</td><td></td></tr>
+<tr><td><code>u16</code></td><td>符号なし16ビット整数</td><td></td></tr>
+<tr><td><code>u32</code></td><td>符号なし32ビット整数</td><td></td></tr>
+<tr><td><code>u64</code></td><td>符号なし64ビット整数</td><td></td></tr>
+<tr><td><code>i16</code></td><td>符号付き16ビット整数</td><td>2の補数表現</td></tr>
+<tr><td><code>i32</code></td><td>符号付き32ビット整数</td><td>2の補数表現</td></tr>
+<tr><td><code>i64</code></td><td>符号付き64ビット整数</td><td>2の補数表現</td></tr>
+<tr><td><code>f32</code></td><td>32ビット浮動小数点数</td><td>IEEE 754</td></tr>
+<tr><td><code>f64</code></td><td>64ビット浮動小数点数</td><td>IEEE 754</td></tr>
+<tr><td><code>[T; n]</code></td><td>要素数 <code>n</code> の、型 <code>T</code> の配列</td><td></td></tr>
+<tr><td><code>String</code></td><td>長さ無指定の文字列データ</td><td>UTF-8</td></tr>
+<tr><td><code>Vec&lt;T&gt;</code></td><td>要素数無指定の、型 <code>T</code> の配列</td><td></td></tr>
+<tr><td><code>Vec&lt;u8&gt;</code></td><td>長さ無指定のバイナリデータ</td><td>符号なし8ビット整数の配列と見做せる</td></tr>
+</tbody></table>
+<h2><a class="header" href="#値の表現" id="値の表現">値の表現</a></h2>
+<p>データ中に現れる数値などを記述するとき、 <code>42</code> や <code>0xff</code> や <code>3.14</code> のように表現する。
+もし桁が大きな数値であれば、読みやすさのためアンダースコア <code>_</code> を挿入することがある。
+たとえば <code>0xcobebeef</code> は <code>0xcobe_beef</code> 、 <code>1000000</code> は <code>1_000_000</code> などのように表現することもある。</p>
+<p>バイナリデータを記述するときは、 <code>[c0 be be ef]</code> のように <code>[</code> と <code>]</code> で囲って1バイトずつ16進数を空白区切りで並べて記述する。
+1バイトは16進数2桁で表現する。</p>
+<p>データは数値やその他の型として読んだ後の値を表現するかバイト列として1バイトずつ記すため、エンディアンを気にする必要はない。</p>
+<p>文字列は <code>foobar</code> のように表現する。
+これらが数値やバイナリデータと混同するおそれのある文字列値であるときは、文字列である旨明示する。
+明示がないときは、数値やその他の型の値として優先して解釈するものとする。
+特殊な記号や非印字文字などは <code>\x00</code> や <code>foo\x00bar</code> のように <code>\x</code> に続けて16進数2桁で表現する。</p>
+<h1><a class="header" href="#fbx-7x" id="fbx-7x">FBX 7.x</a></h1>
+<p>本章では、 FBX 7.x (主に 7.4 以降) の仕様について解説する。</p>
+<h2><a class="header" href="#概要" id="概要">概要</a></h2>
+<h3><a class="header" href="#文法とスキーマ" id="文法とスキーマ">文法とスキーマ</a></h3>
+<p>FBX 形式は、<strong>文法</strong>と<strong>スキーマ</strong>の2つの層(段階)に分けて解釈することができる。</p>
+<p>最初に、低レベルな文法 (syntax) が存在する。
+これは極めて汎用的な規則で、<strong>汎用的なデータ構造をバイナリデータで表現するための配置</strong>を決めるものである。
+FBX データ中では、整数、文字列、バイナリといった、シンプルかつ多様なデータを保持する必要がある。
+構文に従ってバイナリデータを読むことで、これらのデータ型を識別し、また配列や木などの構造を読み取ることができる。</p>
+<p>スキーマ (schema) は、文法に従って解釈された汎用的なデータ構造を、<strong>3Dモデルとして意味付けする</strong>規則である。
+たとえば、同じ数値の配列であってもどれが頂点座標でどれがテクスチャ座標なのか、それらはどのように対応するのか、モデルとテクスチャはどう紐付けられるのか。
+汎用的なデータ構造に対して、このような解釈可能な意味や、それを表現するための更に上位の構造を与える規則がスキーマである。</p>
+<p>文法とスキーマの関係自体は FBX 形式に特有のものではない。
+たとえば汎用的でそれ自体が意味を提示しない XML 文法に加えて XHTML や SVG のようなスキーマを与えることで、 HTML 文書や SVG 画像といった解釈可能なデータを得ることができる。
+他の 3D データ形式でもこのようなデータ形式定義は行われており、 COLLADA 形式は XML 文法と COLLADA スキーマによって、 glTF 形式は JSON 文法と glTF スキーマによって意味を与えられる。</p>
+<h3><a class="header" href="#fbx-の文法とスキーマ" id="fbx-の文法とスキーマ">FBX の文法とスキーマ</a></h3>
+<p>文法は汎用的なデータを記述するものであり、また解釈を与えることが少ないため、単純になりやすい。
+そのため、多くのデータを観察することにより、その詳細な規則を推測することが可能であることが多い。</p>
+<p>対照的にスキーマは表現するデータの複雑さを反映したものになるため、その定義も複雑になりやすい。
+特に FBX 形式はプロプライエタリであり仕様が公式に公開されていないため、スキーマの全貌や詳細も明らかでない。
+本書の情報を参考にするときはこの点に留意せよ。</p>
+<h1><a class="header" href="#共通の構造" id="共通の構造">共通の構造</a></h1>
+<p>この節では、 ASCII 形式かバイナリ形式かに関係なく共通に利用される構造について説明する。</p>
+<h1><a class="header" href="#ノード" id="ノード">ノード</a></h1>
+<p>FBX データの本体は、文法レベルでは木構造で表現される。
+ノードは、その木構造を構成するための主要な要素である。</p>
+<p>ノードは以下の3種類の情報を保持する。</p>
+<ul>
+<li><a href="fbx-7x/common-structure/node.html#name">ノード名</a></li>
+<li><a href="fbx-7x/common-structure/node.html#attributes">属性</a></li>
+<li><a href="fbx-7x/common-structure/node.html#children">子ノード</a></li>
+</ul>
+<p><img src="fbx-7x/common-structure/node.svg" alt="ノードはノード名、属性の配列、子ノードの配列の3つの情報の組である。" /></p>
+<h2><a class="header" href="#ノード名span-idname-----span" id="ノード名span-idname-----span">ノード名<span id="name"><!-- --></span></a></h2>
+<p>ノードの名前。</p>
+<p>観測される範囲では、 ASCII の英数字1文字以上で表現されている。
+すなわち、正規表現 <code>/[a-zA-Z0-9]+/</code> にマッチする名前しか利用されていないようである。</p>
+<p>また、バイナリ形式ではノード名の長さに文法上の制限が存在する。</p>
+<h2><a class="header" href="#属性span-idattributes-----span" id="属性span-idattributes-----span">属性<span id="attributes"><!-- --></span></a></h2>
+<p>属性はノードに紐付いた情報である。</p>
+<p>これは XML における属性のような連想配列 (名前と値の組) ではなく、単なる値の配列として保持される。
+よって、属性の出現する順番が意味を持つ。</p>
+<p>属性として利用可能な型は以下の通りである。</p>
+<ul>
+<li>プリミティブ
+<ul>
+<li><code>bool</code></li>
+<li><code>i16</code></li>
+<li><code>i32</code></li>
+<li><code>i64</code></li>
+<li><code>f32</code></li>
+<li><code>f64</code></li>
+</ul>
+</li>
+<li>配列
+<ul>
+<li><code>Vec&lt;bool&gt;</code></li>
+<li><code>Vec&lt;i32&gt;</code></li>
+<li><code>Vec&lt;i64&gt;</code></li>
+<li><code>Vec&lt;f32&gt;</code></li>
+<li><code>Vec&lt;f64&gt;</code></li>
+</ul>
+</li>
+<li>特殊
+<ul>
+<li><code>Vec&lt;u8&gt;</code></li>
+<li><code>String</code></li>
+</ul>
+</li>
+</ul>
+<p>FBX バイナリ形式では、配列型の値や特殊型の値の要素数やバイト長に文法上の制限が存在する。</p>
+<p>これらの型はネイティブコード上あるいは FBX バイナリ形式上では区別・判別されるが、 FBX テキスト形式上では区別できない或いは値が変化する場合がある。
+たとえば <code>i16</code>, <code>i32</code>, <code>i64</code> は単なる整数の10進数表記になり、場合によっては <code>f32</code> や <code>f64</code> の値も整数値であれば <code>0</code> などのように記述され整数型と区別できなくなる。
+また、 FBX テキスト形式では文字列のエスケープ規則が不完全であるため、文字列値も保存時と読み出し時で変化することがある。
+詳細については『<a href="fbx-7x/common-structure/../text-syntax/README.html">テキスト文法</a>』節を参照。</p>
+<h2><a class="header" href="#子ノードspan-idchildren-----span" id="子ノードspan-idchildren-----span">子ノード<span id="children"><!-- --></span></a></h2>
+<p>ノードは0個以上の子ノードを持つ。
+子ノードは同じ名前を持つこともあるが、観察の限りではその出現の順番が意味を持つようなデータはなかった。
+よって、表現上これらは配列であるが、実用上は順序のない集合のようなものとして扱っても問題ないだろう。</p>
+<h1><a class="header" href="#バイナリ文法" id="バイナリ文法">バイナリ文法</a></h1>
+<p>本節では、 FBX 7.x 、特に FBX 7.4 以降のバイナリ形式の文法について解説する。</p>
+<h2><a class="header" href="#前提" id="前提">前提</a></h2>
+<h3><a class="header" href="#バイナリ表現" id="バイナリ表現">バイナリ表現</a></h3>
+<p>FBX バイナリ形式では、多バイトデータの表現として基本的にリトルエンディアンが用いられる。
+たとえば、<code>u32</code> 型の値 <code>7400</code> (<code>0x00001ce8</code>) は、バイナリデータ中では <code>[e8 1c 00 00]</code> のようなバイト列で表現される。</p>
+<h3><a class="header" href="#文字列表現" id="文字列表現">文字列表現</a></h3>
+<p>FBX データにおいて、文字列は基本的に UTF-8 エンコードで表現される。
+そのため、文字列についてエンディアンは気にする必要がない。</p>
+<p>稀に独自型データとして UTF-16 文字列が入っているなどの状況があるが、これは極めて特殊な例のため普通考える必要はない。
+そのような例外がありうる場合は適宜明示する。</p>
+<h1><a class="header" href="#基本型の値の表現" id="基本型の値の表現">基本型の値の表現</a></h1>
+<h2><a class="header" href="#エンディアンspan-idendian-----span" id="エンディアンspan-idendian-----span">エンディアン<span id="endian"><!-- --></span></a></h2>
+<p>FBX バイナリ形式では、多バイトデータの表現として基本的にリトルエンディアンが用いられる。
+たとえば、<code>u32</code> 型の値 <code>7400</code> (<code>0x00001ce8</code>) は、バイナリデータ中では <code>[e8 1c 00 00]</code> のようなバイト列で表現される。</p>
+<h2><a class="header" href="#真偽値span-idboolean-----span" id="真偽値span-idboolean-----span">真偽値<span id="boolean"><!-- --></span></a></h2>
+<p><code>bool</code> は <code>true</code> か <code>false</code> の値を持つ型だが、これは FBX バイナリ形式中では (驚くべきことに) それぞれ文字 <code>Y</code> (数値 <code>0x59</code>) と文字 <code>T</code> (数値 <code>0x54</code>) で表現される。</p>
+<table><thead><tr><th>論理的な値</th><th>バイナリ表現</th><th>ASCII 対応する文字</th></tr></thead><tbody>
+<tr><td><code>false</code></td><td><code>0x54</code></td><td><code>T</code></td></tr>
+<tr><td><code>true</code></td><td><code>0x59</code></td><td><code>Y</code></td></tr>
+</tbody></table>
+<p><code>T</code> と <code>Y</code> の由来が何なのかは不明。</p>
+<p>留意すべきなのが、これらは Autodesk 公式の FBX SDK が読み書きする値であって、必ずしもすべてのソフトウェアがこれに準拠しているわけではないことだ。
+たとえば Blender 2.72b における FBX プラグインは、真偽値として <code>0x54</code> と <code>0x59</code> ではなく <code>0x00</code> と <code>0x01</code> を出力する。
+このようなデータは FBX SDK にとって不正であり無視されてしまうため、情報が欠落することになる。</p>
+<p>FBX 処理系はこのような壊れた真偽値表現に遭遇した場合、 <code>0x54</code> と <code>0x59</code> のみを受け入れて FBX SDK と同様にデータを読み取るのか、偶数と奇数で判別して出力プログラムが意図した (であろう) データを読み取るのか、選択する必要がある。</p>
+<h1><a class="header" href="#ファイル構造" id="ファイル構造">ファイル構造</a></h1>
+<p>FBX バイナリ形式のデータは、先頭から順に以下のような構造になっている。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#magic-number">マジックナンバー</a></td><td>23 bytes</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#header-fbx-version">FBX バージョン</a></td><td>4 bytes</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#toplevel-nodes">トップレベルノード</a></td><td>(可変、0個以上)</td><td>可変サイズ</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#node-end-marker">ノード終了マーカー</a></td><td>13 or 25 bytes</td><td>FBX 7.4 までは13バイト、 FBX 7.5 以降は25バイト</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#footer-1">フッタ1</a></td><td>16 bytes</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#padding">パディング</a></td><td>0 〜 15 bytes</td><td>コンテンツの本体。可変サイズ</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#footer-2">フッタ2</a></td><td>4 bytes</td><td>全て <code>0x00</code></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#footer-fbx-version">FBX バージョン</a></td><td>4 bytes</td><td><a href="fbx-7x/binary-syntax/file.html#header-fbx-version">ヘッダでの FBX バージョンと同内容</a></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#footer-3">フッタ3</a></td><td>120 bytes</td><td>全て <code>0x00</code></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/file.html#footer-4">フッタ4</a></td><td>16 bytes</td><td></td></tr>
+</tbody></table>
+<p><a href="fbx-7x/binary-syntax/file.html#padding">パディング</a>が適切なサイズで挿入されていれば、ファイル全体は必ず16の倍数の長さを持つ。</p>
+<h2><a class="header" href="#マジックナンバーspan-idmagic-number-----span" id="マジックナンバーspan-idmagic-number-----span">マジックナンバー<span id="magic-number"><!-- --></span></a></h2>
+<p>FBX バイナリ形式は、ファイル先頭に23バイトのマジックバイナリ <code>[4b 61 79 64 61 72 61 20 46 42 58 20 42 69 6e 61 72 79 20 20 00 1a 00]</code> を持つ。
+文字列で表現すると <code>Kaydara FBX Binary  \x00\x1a\x00</code> のようになるため、印字可能ではないが ASCII の範囲内で表現できる。
+(<code>Binary</code> のあとに半角空白 <code>\x20</code> が2つ続くことに留意せよ。)</p>
+<pre><code class="language-console">$ hexdump -C sample-74.fbx --length 23
+00000000  4b 61 79 64 61 72 61 20  46 42 58 20 42 69 6e 61  |Kaydara FBX Bina|
+00000010  72 79 20 20 00 1a 00                              |ry  ...|
+00000017
+$
+</code></pre>
+<p>なお <a href="https://code.blender.org/2013/08/fbx-binary-file-format-specification/">Blender の開発者による情報</a>では、最初の21バイトをマジックバイナリ、次の2バイト (<code>[1a 00]</code>) を不明な情報としている。
+どのような理由でこう解釈したかは不明だが、実用上は最初の23バイトをまとめてマジックバイナリであると解釈して問題ない。</p>
+<h2><a class="header" href="#fbx-バージョンspan-idheader-fbx-version-----span" id="fbx-バージョンspan-idheader-fbx-version-----span">FBX バージョン<span id="header-fbx-version"><!-- --></span></a></h2>
+<p>マジックナンバーに続けて、 FBX バージョンが4バイトの整数 (<code>u32</code> 型)で表現される。</p>
+<pre><code class="language-console">$ : 以下は FBX 7.4 のファイルの例
+$ hexdump -C sample-74.fbx --skip 23 --length 4
+00000017  e8 1c 00 00                                       |....|
+0000001b
+$
+</code></pre>
+<p>バージョンと値の対応は以下のようになっている。</p>
+<table><thead><tr><th>バージョン</th><th>値 (10進数)</th><th>バイナリ表現</th></tr></thead><tbody>
+<tr><td>7.3</td><td><code>7300</code></td><td><code>[84 1c 00 00]</code></td></tr>
+<tr><td>7.4</td><td><code>7400</code></td><td><code>[e8 1c 00 00]</code></td></tr>
+<tr><td>7.5</td><td><code>7500</code></td><td><code>[4c 1d 00 00]</code></td></tr>
+</tbody></table>
+<p>バージョン x.y は 1000 × x + 100 × y で表現されているようである。
+100未満の桁が利用されている例は見たことがないため、使われているかは不明。</p>
+<h2><a class="header" href="#トップレベルノードspan-idtoplevel-nodes-----span" id="トップレベルノードspan-idtoplevel-nodes-----span">トップレベルノード<span id="toplevel-nodes"><!-- --></span></a></h2>
+<p><a href="fbx-7x/binary-syntax/node.html">ノード</a>を0個以上並べたもの。
+この個数や長さを先頭から読んで事前に知ることはできない。</p>
+<p>ノードについては『<a href="fbx-7x/binary-syntax/node.html">ノード</a>』節で解説する。</p>
+<h2><a class="header" href="#ノード終了マーカーspan-idnode-end-marker-----span" id="ノード終了マーカーspan-idnode-end-marker-----span">ノード終了マーカー<span id="node-end-marker"><!-- --></span></a></h2>
+<p>FBX 7.4 までは13バイトの、 FBX 7.5 以降では25バイトの <code>0x00</code> を並べたもの。
+これはトップレベルノード(の列)の終了を意味するマーカーである。</p>
+<p>このマーカーはファイル中に明示されない暗黙のルートノードの終了マーカーとして捉えることができる。
+詳細は『<a href="fbx-7x/binary-syntax/node.html">ノード</a>』節で解説する。</p>
+<h2><a class="header" href="#フッタ1span-idfooter-1-----span" id="フッタ1span-idfooter-1-----span">フッタ1<span id="footer-1"><!-- --></span></a></h2>
+<p>16バイトのデータ。
+値についても用途についても詳細は不明だが、規則性が見られる。</p>
+<p>このフッタの値は、以下のようなビットパターンを持っている。
+(<code>x</code> の部分は <code>0</code> から <code>f</code> までの任意の4ビット。)</p>
+<pre><code class="language-text">fx bx ax 0x dx cx dx 6x bx 7x fx 8x 1x fx 2x 7x
+</code></pre>
+<p>すべてのバイトについて上位4ビットが固定されているのが特徴的である。
+実際に観測した例としては、以下のようなデータがある。
+(なお、ここでは FBX SDK から出力された可能性の高いデータのみを挙げる。)</p>
+<p>FBX 7.4:</p>
+<pre><code class="language-text">fa bc ae 0a d7 ca d3 66 b6 75 f8 86 1a fe 2a 78
+fa bc a8 0c d6 c0 dc 60 b7 7c f4 86 1f f7 26 78
+fa bc a9 0b d0 c0 dd 67 b1 7c f4 86 1f f7 26 78
+</code></pre>
+<p>FBX 7.3:</p>
+<pre><code class="language-text">fa bc aa 0c d4 c0 dd 65 b1 78 f1 82 1a f3 23 7c
+fa bc ab 0f d6 c0 dc 66 b3 78 f1 82 1a f3 23 7c
+</code></pre>
+<p>上位2バイトの <code>[fa bc]</code> や、末尾バイトの <code>[78]</code> や <code>[7c]</code> などを見るに、下位4ビットについても完全な乱数ではなく何らかの規則が存在する可能性は高い。</p>
+<p>このフッタを読み飛ばしても、データの解釈に支障はない。</p>
+<h2><a class="header" href="#パディングspan-idpadding-----span" id="パディングspan-idpadding-----span">パディング<span id="padding"><!-- --></span></a></h2>
+<p>次のデータである<a href="fbx-7x/binary-syntax/file.html#footer-2">フッタ2</a>の開始を16バイト境界で整列するためのパディング。
+0〜15バイトで可変長。</p>
+<p>Blender 2.72b の FBX プラグインは、このパディングを誤った長さで出力することがある。</p>
+<h2><a class="header" href="#フッタ2span-idfooter-2-----span" id="フッタ2span-idfooter-2-----span">フッタ2<span id="footer-2"><!-- --></span></a></h2>
+<p>4バイトの <code>0x00</code> である。
+用途や意味は不明。</p>
+<p>正しく<a href="fbx-7x/binary-syntax/file.html#padding">パディング</a> が挿入されていれば、16の倍数位置から始まる。</p>
+<h2><a class="header" href="#fbx-バージョンspan-idfooter-fbx-version-----span" id="fbx-バージョンspan-idfooter-fbx-version-----span">FBX バージョン<span id="footer-fbx-version"><!-- --></span></a></h2>
+<p><a href="fbx-7x/binary-syntax/file.html#header-fbx-version">ヘッダ部分の FBX バージョン</a>と全く同じ4バイトのデータ。</p>
+<h2><a class="header" href="#フッタ3span-idfooter-3-----span" id="フッタ3span-idfooter-3-----span">フッタ3<span id="footer-3"><!-- --></span></a></h2>
+<p>120バイトの <code>0x00</code> である。
+用途や意味は不明。</p>
+<h2><a class="header" href="#フッタ4span-idfooter-4-----span" id="フッタ4span-idfooter-4-----span">フッタ4<span id="footer-4"><!-- --></span></a></h2>
+<p>16バイトの固定データ。
+内容は <code>[f8 5a 8c 6a de f5 d9 7e ec e9 0c e3 75 8f 29 0b]</code> である。</p>
+<h1><a class="header" href="#ノード-1" id="ノード-1">ノード</a></h1>
+<p>本節では FBX バイナリ形式におけるノードの表現を解説する。</p>
+<p>ノードのデータ構造の概要については<a href="fbx-7x/binary-syntax/../common-structure/node.html">『共通の構造』節の『ノード』の項目</a>を参照。</p>
+<p>ひとつのノードの (子要素まで含めた) バイナリ構造は以下の通りである。</p>
+<table><thead><tr><th>内容</th><th>サイズ (FBX 7.4 まで)</th><th>サイズ (FBX 7.5 以降)</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#end-offset">終端位置</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#number-of-attributes">属性数</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#attributes-byte-len">全属性の合計バイト長</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#name-byte-len">ノード名のバイト長</a></td><td>1 byte</td><td>1 byte</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#name">ノード名</a></td><td>可変長</td><td>可変長</td><td>指定されたバイト長、特別な終端記号なし</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#attributes">属性</a></td><td>可変長</td><td>可変長</td><td>0個以上</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#children">子ノード</a></td><td>可変長</td><td>可変長</td><td>0個以上</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/node.html#end-marker">ノード終端マーカー</a></td><td>0 または 13 bytes</td><td>0 または 25 bytes</td><td>特定条件を満たしたとき省略される</td></tr>
+</tbody></table>
+<p>これらをグループ化するならば、以下のようになる。</p>
+<ul>
+<li><a href="fbx-7x/binary-syntax/node.html#header">ヘッダ</a>
+<ul>
+<li><a href="fbx-7x/binary-syntax/node.html#end-offset">終端位置</a></li>
+<li><a href="fbx-7x/binary-syntax/node.html#number-of-attributes">属性数</a></li>
+<li><a href="fbx-7x/binary-syntax/node.html#attributes-byte-len">全属性の合計バイト長</a></li>
+</ul>
+</li>
+<li><a href="fbx-7x/binary-syntax/node.html#name">ノード名</a>
+<ul>
+<li><a href="fbx-7x/binary-syntax/node.html#name-byte-len">ノード名のバイト長</a></li>
+<li><a href="fbx-7x/binary-syntax/node.html#name">ノード名</a></li>
+</ul>
+</li>
+<li><a href="fbx-7x/binary-syntax/node.html#attributes">属性</a></li>
+<li><a href="fbx-7x/binary-syntax/node.html#children">子ノード</a></li>
+<li><a href="fbx-7x/binary-syntax/node.html#end-marker">ノード終端マーカー</a></li>
+</ul>
+<h2><a class="header" href="#ヘッダspan-idheader-----span" id="ヘッダspan-idheader-----span">ヘッダ<span id="header"><!-- --></span></a></h2>
+<h3><a class="header" href="#終端位置span-idend-offset-----span" id="終端位置span-idend-offset-----span">終端位置<span id="end-offset"><!-- --></span></a></h3>
+<p>ノードを表現するバイト列の末尾の位置。
+正確には、ファイル先頭のバイトの位置を0として、ノードを表現する末尾のバイト列の次のバイトの位置を用いる。</p>
+<p>この情報を用いることで、読む必要のないノードをパースせず読み飛ばすことができる。</p>
+<p>このフィールドは FBX 7.4 までで4バイト (<code>u32</code> 型)、 FBX 7.5 以降で8バイト (<code>u64</code> 型) である。</p>
+<h3><a class="header" href="#属性数span-idnumber-of-attributes-----span" id="属性数span-idnumber-of-attributes-----span">属性数<span id="number-of-attributes"><!-- --></span></a></h3>
+<p>ノードの属性の数。</p>
+<p>このフィールドは FBX 7.4 までで4バイト (<code>u32</code> 型)、 FBX 7.5 以降で8バイト (<code>u64</code> 型) である。</p>
+<h3><a class="header" href="#全属性の合計バイト長span-idattributes-byte-len-----span" id="全属性の合計バイト長span-idattributes-byte-len-----span">全属性の合計バイト長<span id="attributes-byte-len"><!-- --></span></a></h3>
+<p>ノードの全属性の合計バイト長。
+これは FBX データ上で占める長さである。
+各属性のヘッダのサイズも長さに含め、圧縮された属性は展開せず圧縮済データのままのサイズを用いる。</p>
+<p>このフィールドは FBX 7.4 までで4バイト (<code>u32</code> 型)、 FBX 7.5 以降で8バイト (<code>u64</code> 型) である。</p>
+<h2><a class="header" href="#ノード名span-idname-----span-1" id="ノード名span-idname-----span-1">ノード名<span id="name"><!-- --></span></a></h2>
+<h3><a class="header" href="#ノード名のバイト長span-idname-byte-len-----span" id="ノード名のバイト長span-idname-byte-len-----span">ノード名のバイト長<span id="name-byte-len"><!-- --></span></a></h3>
+<p>ノード名文字列のバイト長。</p>
+<p>ノード名は NUL 終端などの特別なルールを持たず、そのままのバイト列で表現される。</p>
+<p>このフィールドは1バイト (<code>u8</code> 型) である。</p>
+<h3><a class="header" href="#ノード名文字列span-idname-string-----span" id="ノード名文字列span-idname-string-----span">ノード名文字列<span id="name-string"><!-- --></span></a></h3>
+<p>ノード名文字列。</p>
+<p>ノード名は NUL 終端などの特別なルールを持たず、そのままのバイト列で表現される。</p>
+<h2><a class="header" href="#属性span-idattributes-----span-1" id="属性span-idattributes-----span-1">属性<span id="attributes"><!-- --></span></a></h2>
+<p>属性はノードに紐付いた情報である。</p>
+<p>属性については『<a href="fbx-7x/binary-syntax/attribute.html">属性</a>』節で解説する。</p>
+<h2><a class="header" href="#子ノードspan-idchildren-----span-1" id="子ノードspan-idchildren-----span-1">子ノード<span id="children"><!-- --></span></a></h2>
+<p>ノードは0個以上の子ノードを持つ。</p>
+<p>子ノードについては<a href="fbx-7x/binary-syntax/../common-structure/node.html#children">『共通の構造』節の『ノード』節</a>を参照。</p>
+<h2><a class="header" href="#ノード終端マーカーspan-idend-marker-----span" id="ノード終端マーカーspan-idend-marker-----span">ノード終端マーカー<span id="end-marker"><!-- --></span></a></h2>
+<p>ひとつのノードのバイナリ表現の終端を示すもので、特定条件下で省略される。</p>
+<p>このフィールドは FBX 7.4 までで13バイト (<code>u32</code> 型)、 FBX 7.5 以降で25バイト (<code>u64</code> 型) である。</p>
+<h3><a class="header" href="#省略条件" id="省略条件">省略条件</a></h3>
+<p>ノード終端マーカーが省略される条件は、「ノードが属性を1つ以上持ち、かつ子ノードを持たない」ことである。
+これは FBX テキスト形式において子ノード群を囲むための括弧 <code>{}</code> が省略される条件と等しい。</p>
+<h3><a class="header" href="#長さの意味" id="長さの意味">長さの意味</a></h3>
+<p>13バイトや25バイトという長さは、ちょうど<a href="fbx-7x/binary-syntax/node.html#header">ヘッダ</a>の長さ (すなわち 4+4+1 と 8+8+1) と同じである。
+このマーカーの存在によって、パーサは**(正しいデータならば) 理論上は**<a href="fbx-7x/binary-syntax/node.html#end-offset">終端位置</a>情報を記憶せずともノード階層を正しく把握できる。
+ノード終端マーカーは最後の子ノードの直後に続くため、子ノードのヘッダを読もうとして13バイトまたは25バイト読み、その全てが <code>0x00</code> であるかを確認することで、ノードが終わるか新たな子ノードが続くかを判別できる。</p>
+<p>ただし後述の通り複数の出力処理系に不具合が認められるため、ノード階層の把握を終端位置の記憶・照合なしに試みるべきでない。</p>
+<h3><a class="header" href="#省略と処理系のバグ" id="省略と処理系のバグ">省略と処理系のバグ</a></h3>
+<p>しかし実際には、 Maya 2015 (および FBX SDK 2015.1) や Blender 2.79 および 2.80 などが、ノード終端マーカーを省略すべき場所で誤って出力したり、逆に出力すべき場所で省略したりしている。
+そのため、<strong>実用上は<a href="fbx-7x/binary-syntax/node.html#end-offset">終端位置</a>を用いなければノード階層を正確に判断することはできない</strong>と考えるべきであろう。</p>
+<p>以下に参考情報を挙げる。</p>
+<ul>
+<li><a href="https://developer.blender.org/T71729">⚓ T71729 Lack of null record on Properties70 node by FBX Exporter</a>
+<ul>
+<li>Blender 2.79 / 2.80 で出力された FBX ファイルで、本来あるべきノード終端マーカーが欠落しているという報告。</li>
+<li>属性も子ノードも持たない <code>Properties70</code> ノードを出力する際、ノード終端マーカーが存在すべきだが Blender が吐いたデータにそれがなかった。</li>
+<li>最初に本書の著者のプロジェクトへ報告されたことで発覚した: <a href="https://github.com/lo48576/fbxcel/issues/2">Unable to import fbx from blender 2.79/2.8 · Issue #2 · lo48576/fbxcel</a></li>
+</ul>
+</li>
+<li><a href="https://mastodon.cardina1.red/@loliconductor/103510156295709353">https://mastodon.cardina1.red/@loliconductor/103510156295709353</a>
+<ul>
+<li><code>Maya 2015 (FBX SDK/FBX Plugins version 2015.1 build=20140408)</code> で出力された FBX ファイルで、不要なはずのノード終端マーカーが挿入されている。</li>
+<li>
+<blockquote>
+<p>具体的には、トップレベルの Objects ノード以下に子ノードを持たないようなノードがある場合 (典型的には CollectionExclusive (DisplayLayer) とか AnimationLayer ノード) に、余計な NULL record (13バイトの0) が吐かれている</p>
+<p>— <a href="https://mastodon.cardina1.red/@loliconductor/103510165763794263">https://mastodon.cardina1.red/@loliconductor/103510165763794263</a></p>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<p>Objects の子は全てが3つくらい属性を持っているので、子ノードを持たない場合は NULL record が存在してはいけないはずなんだけど、どうやら余計に吐かれている。<br />
+ノードヘッダに入っているノード終端位置情報が正しいので普通の処理系はこの情報を無視できるんだけど……</p>
+<p>— <a href="https://mastodon.cardina1.red/@loliconductor/103510174844382235">https://mastodon.cardina1.red/@loliconductor/103510174844382235</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1><a class="header" href="#属性" id="属性">属性</a></h1>
+<!-- TODO: xref -->
+<p>本節では FBX バイナリ形式における属性の表現を解説する。</p>
+<p>属性のデータ構造についての概要は<a href="fbx-7x/binary-syntax/attribute/../common-structure/node.html#attributes">『共通の構造』節の『ノード』節</a>を参照。</p>
+<h2><a class="header" href="#概要span-idabstract-----span" id="概要span-idabstract-----span">概要<span id="abstract"><!-- --></span></a></h2>
+<p>属性は、以下のように表現される。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/index.html#value-types">型コード</a></td><td>1 byte</td><td>ASCII アルファベット</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/index.html#type-specific-headers">型特有の追加ヘッダ</a></td><td>(型による)</td><td></td></tr>
+<tr><td>値</td><td>(型による)</td><td></td></tr>
+</tbody></table>
+<h2><a class="header" href="#値の型span-idvalue-types-----span" id="値の型span-idvalue-types-----span">値の型<span id="value-types"><!-- --></span></a></h2>
+<p><a href="fbx-7x/binary-syntax/attribute/../common-structure/node.html#attributes">別の節</a>で既に解説したが再掲すると、属性の値の型は以下のいずれかである。</p>
+<ul>
+<li><a href="fbx-7x/binary-syntax/attribute/primitive.html">プリミティブ</a>
+<ul>
+<li><code>bool</code></li>
+<li><code>i16</code></li>
+<li><code>i32</code></li>
+<li><code>i64</code></li>
+<li><code>f32</code></li>
+<li><code>f64</code></li>
+</ul>
+</li>
+<li><a href="fbx-7x/binary-syntax/attribute/array.html">配列</a>
+<ul>
+<li><code>Vec&lt;bool&gt;</code></li>
+<li><code>Vec&lt;i32&gt;</code></li>
+<li><code>Vec&lt;i64&gt;</code></li>
+<li><code>Vec&lt;f32&gt;</code></li>
+<li><code>Vec&lt;f64&gt;</code></li>
+</ul>
+</li>
+<li><a href="fbx-7x/binary-syntax/attribute/special.html">特殊</a>
+<ul>
+<li><code>Vec&lt;u8&gt;</code></li>
+<li><code>String</code></li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#型コードspan-idtype-codes-----span" id="型コードspan-idtype-codes-----span">型コード<span id="type-codes"><!-- --></span></a></h2>
+<p>型コードは属性値の型を表現する1バイトの整数 (<code>u8</code>) である。
+実際には型コードの値には ASCII のアルファベットのみが利用されている。</p>
+<p>以下は型コードの一覧である。</p>
+<table><thead><tr><th>型</th><th>型コード (ASCII)</th><th>型コード (整数)</th><th>命名由来の推測</th></tr></thead><tbody>
+<tr><td><code>bool</code></td><td><code>C</code></td><td><code>0x43</code></td><td>Condition の <code>C</code>?</td></tr>
+<tr><td><code>i16</code></td><td><code>Y</code></td><td><code>0x59</code></td><td>由来不明</td></tr>
+<tr><td><code>i32</code></td><td><code>I</code></td><td><code>0x49</code></td><td>Int の <code>I</code></td></tr>
+<tr><td><code>i64</code></td><td><code>L</code></td><td><code>0x4c</code></td><td>Long の <code>L</code></td></tr>
+<tr><td><code>f32</code></td><td><code>F</code></td><td><code>0x46</code></td><td>Float の <code>F</code></td></tr>
+<tr><td><code>f64</code></td><td><code>D</code></td><td><code>0x44</code></td><td>Double の <code>D</code></td></tr>
+<tr><td><code>Vec&lt;bool&gt;</code></td><td><code>b</code></td><td><code>0x62</code></td><td>bool の <code>b</code>?</td></tr>
+<tr><td><code>Vec&lt;i32&gt;</code></td><td><code>i</code></td><td><code>0x69</code></td><td>int の <code>i</code></td></tr>
+<tr><td><code>Vec&lt;i64&gt;</code></td><td><code>l</code></td><td><code>0x6c</code></td><td>long の <code>l</code></td></tr>
+<tr><td><code>Vec&lt;f32&gt;</code></td><td><code>f</code></td><td><code>0x66</code></td><td>float の <code>f</code></td></tr>
+<tr><td><code>Vec&lt;f64&gt;</code></td><td><code>d</code></td><td><code>0x64</code></td><td>double の <code>d</code></td></tr>
+<tr><td><code>Vec&lt;u8&gt;</code></td><td><code>R</code></td><td><code>0x52</code></td><td>Raw の <code>R</code>?</td></tr>
+<tr><td><code>String</code></td><td><code>S</code></td><td><code>0x53</code></td><td>String の <code>S</code></td></tr>
+</tbody></table>
+<h2><a class="header" href="#型特有の追加ヘッダspan-idtype-specific-headers-----span" id="型特有の追加ヘッダspan-idtype-specific-headers-----span">型特有の追加ヘッダ<span id="type-specific-headers"><!-- --></span></a></h2>
+<p>型特有の追加ヘッダは、配列型のためのヘッダと特殊型のためのヘッダが存在する。
+プリミティブ型に追加のヘッダはない。</p>
+<h1><a class="header" href="#プリミティブ型" id="プリミティブ型">プリミティブ型</a></h1>
+<p>プリミティブ型に追加のヘッダはない。
+よって、プリミティブ型の属性は以下のように表現される。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<tr><td>型コード</td><td>1 byte</td><td>ASCII アルファベット</td></tr>
+<tr><td>値</td><td>(型による)</td><td>型コードから明らか</td></tr>
+</tbody></table>
+<p>プリミティブ型の値のサイズは型より明らかである。</p>
+<h2><a class="header" href="#値" id="値">値</a></h2>
+<p>値は例に漏れずリトルエンディアンで表現される。</p>
+<h1><a class="header" href="#配列型" id="配列型">配列型</a></h1>
+<p>配列型は以下のような追加ヘッダを持つ。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#num-elems">要素数</a></td><td>4 bytes</td><td></td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding">エンコーディング</a></td><td>4 bytes</td><td>圧縮形式など</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#bytelen">データのバイト長</a></td><td>4 bytes</td><td>ファイル中に占める長さ</td></tr>
+</tbody></table>
+<p>よって属性全体としては以下のようになる。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/README.html#type-codes">型コード</a></td><td>1 byte</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#num-elems">要素数</a></td><td>4 bytes</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding">エンコーディング</a></td><td>4 bytes</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#bytelen">データのバイト長</a></td><td>4 bytes</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#data">データ</a></td><td>(可変長、指定された長さ)</td></tr>
+</tbody></table>
+<h2><a class="header" href="#要素数span-idnum-elems-----span" id="要素数span-idnum-elems-----span">要素数<span id="num-elems"><!-- --></span></a></h2>
+<p>配列の要素の個数である。
+バイト長ではない。</p>
+<h2><a class="header" href="#エンコーディングspan-idencoding-----span" id="エンコーディングspan-idencoding-----span">エンコーディング<span id="encoding"><!-- --></span></a></h2>
+<p>配列データ本体の圧縮形式など。
+以下は一覧である。</p>
+<table><thead><tr><th>値</th><th>エンコーディング</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding--0"><code>0</code></a></td><td>非圧縮</td><td>無加工</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding--1"><code>1</code></a></td><td>zlib 圧縮</td><td>RFC 1950</td></tr>
+</tbody></table>
+<p>これ以外の値は観測されていないが、 FBX 形式はプロプライエタリであるため他のエンコーディングが存在する可能性は否定できない。
+とはいえ実用上はこの2つに対応すれば十分であろう。</p>
+<h3><a class="header" href="#0-非圧縮span-idencoding--0-----span" id="0-非圧縮span-idencoding--0-----span">0: 非圧縮<span id="encoding--0"><!-- --></span></a></h3>
+<p>無加工。</p>
+<h3><a class="header" href="#1-zlib-圧縮span-idencoding--1-----span" id="1-zlib-圧縮span-idencoding--1-----span">1: zlib 圧縮<span id="encoding--1"><!-- --></span></a></h3>
+<p>配列は zlib 圧縮されている。
+zlib ヘッダが必要である (つまり生の deflate ストリームではない)。</p>
+<h2><a class="header" href="#データのバイト長span-idbytelen-----span" id="データのバイト長span-idbytelen-----span">データのバイト長<span id="bytelen"><!-- --></span></a></h2>
+<p>共通ヘッダと追加ヘッダを除いて、配列データ本体が FBX データ中に占めるサイズ。
+配列が圧縮されていれば、展開後でなく圧縮後のバイト長を使う。</p>
+<h2><a class="header" href="#データspan-iddata-----span" id="データspan-iddata-----span">データ<span id="data"><!-- --></span></a></h2>
+<p>素朴に値を並べたものである。
+パディングや順序の入れ替えなどは一切ない。</p>
+<h1><a class="header" href="#特殊型" id="特殊型">特殊型</a></h1>
+<p>特殊型は以下のような追加ヘッダを持つ。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/special.html#bytelen">データのバイト長</a></td><td>4 bytes</td><td>ファイル中に占める長さ</td></tr>
+</tbody></table>
+<p>よって属性全体としては以下のようになる。</p>
+<table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/README.html#type-codes">型コード</a></td><td>1 byte</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/special.html#bytelen">データのバイト長</a></td><td>4 bytes</td></tr>
+<tr><td><a href="fbx-7x/binary-syntax/attribute/special.html#data">データ</a></td><td>(可変長、指定された長さ)</td></tr>
+</tbody></table>
+<h2><a class="header" href="#データのバイト長span-idbytelen-----span-1" id="データのバイト長span-idbytelen-----span-1">データのバイト長<span id="bytelen"><!-- --></span></a></h2>
+<p>共通ヘッダと追加ヘッダを除いた、文字列やバイナリデータ本体のバイト長。</p>
+<h2><a class="header" href="#データspan-iddata-----span-1" id="データspan-iddata-----span-1">データ<span id="data"><!-- --></span></a></h2>
+<p>文字列やバイナリデータ本体。
+圧縮などは一切行われず、生の値がそのまま利用される。</p>
+<p>文字列データは、 NUL 終端なども不要の素朴な文字列である。
+また、印字不可能な文字などが利用されることがある。
+たとえば <code>\x00</code> (ASCII コード <code>0x00</code>) や <code>\x01</code> (ASCII コード <code>0x01</code>) が特定の文脈で実際によく出現する。</p>
+<p>データが文字列のとき、符号化形式は通常 UTF-8 である。</p>
+<p>Maya から出力されたらしい FBX バイナリファイルで文字列として UTF-16 文字列が用いられているデータを観測したことがあるが、 ASCII 文字の範囲内であったため、 UTF-8 としても妥当な文字列であった。
+そのため、 UTF-8 として妥当でないバイトシーケンスが文字列値として許されているのかは不明である。
+また、そもそもこのような異常な属性値が混入することは稀であり、そのような属性値はそもそも一般の外部プロセッサで解釈することを想定していないと思われるため、無視してよいだろう。</p>
+<h1><a class="header" href="#テキスト文法" id="テキスト文法">テキスト文法</a></h1>
+<p>本節では、 FBX テキスト形式の文法について解説する。</p>
+<p>本節での解説は網羅的でない、また正確でない可能性が高いことに留意せよ。
+つまり、本節で説明されていない文法が許されていたり、本節で説明した文法が公式 SDK で読めない文字列を含む可能性がある。</p>
+<h1><a class="header" href="#基本" id="基本">基本</a></h1>
+<p>以下は大雑把な文法を ABNF で表現したものである。
+これらが正確とは限らない (むしろ、おそらく誤りがある) ことに留意せよ。</p>
+<pre><code class="language-text">ALPHA = %41-5A / %61-7A   ; A-Z / a-z
+DIGIT = %x30-39           ; 0-9
+ALNUM = ALPHA / DIGIT     ; alphanumeric
+HEXDIG = DIGIT / &quot;A&quot; / &quot;B&quot; / &quot;C&quot; / &quot;D&quot; / &quot;E&quot; / &quot;F&quot;
+                          ; hex digit
+DQUOTE = %x22             ; &quot; (double quote)
+HTAB = %x09               ; horizontal tab
+LF = %x0A                 ; line feed
+WSP = SP / HTAB           ; white space
+
+file = *(comment / node / LF)
+comment = *WSP &quot;;&quot; *(ALNUM / WSP) LF
+node = *WSP name &quot;: &quot; [attributes] &quot; {&quot; LF children *WSP &quot;}&quot; LF
+     / *WSP name &quot;: &quot; attributes LF
+name = ALPHA *ALNUM
+attributes = attr-value *(&quot;,&quot; [WSP] attr-value)
+attr-value = attr-boolean / attr-number / attr-array / attr-string / attr-binary
+attr-boolean = &quot;T&quot; / &quot;Y&quot;
+integer = 0 / %x31-39 *DIGIT
+attr-number = [&quot;-&quot;] integer [&quot;.&quot; integer / &quot;E&quot; [&quot;-&quot;] integer]
+attr-array = &quot;*&quot; integer &quot; {&quot; LF *WSP &quot;a: &quot; [attr-array-elem *(&quot;,&quot; attr-array-elem)] [&quot;,&quot;] LF *WSP &quot;}&quot;
+attr-array-elem = attr-boolean / attr-number
+string-content-char = %x00-21 / %x23-25 / &quot;&amp;&quot; (&quot;cr&quot; / &quot;lf&quot; / &quot;quot&quot;) &quot;;&quot; / #x27-FF
+attr-string = DQUOTE *string-content-char DQUOTE
+base64-char = ALNUM / &quot;+&quot; / &quot;/&quot;
+base64-chunk = *(4*base64-char)
+base64-chunk-final = base64-chunk [
+    base64-char &quot;===&quot;
+    / 2*base64-char &quot;==&quot;
+    / 3*base64-char &quot;=&quot;
+    / 4*base64-char
+    ]
+attr-binary = *(DQUOTE base64-chunk DQUOTE &quot;,&quot; LF SP) DQUOTE base64-chunk-final DQUOTE [&quot;,&quot;]
+    ; Note that this may have trailing comma.
+children = *comment node *(node / comment)
+</code></pre>
+<h2><a class="header" href="#ファイル" id="ファイル">ファイル</a></h2>
+<p>ファイルはノードとコメントを並べたものである。
+コメントはおそらく任意だが、 FBX SDK が出力したファイルの先頭には以下のようなコメントが付いている。</p>
+<p>FBX 7.3 の場合:</p>
+<pre><code class="language-text">; FBX 7.3.0 project file
+; Copyright (C) 1997-2010 Autodesk Inc. and/or its licensors.
+; All rights reserved.
+; ----------------------------------------------------
+</code></pre>
+<p>FBX 7.5 の場合:</p>
+<pre><code class="language-text">; FBX 7.5.0 project file
+; Copyright (C) 1997-2010 Autodesk Inc. and/or its licensors.
+; All rights reserved.
+; ----------------------------------------------------
+</code></pre>
+<p>これが信頼性のあるファイル形式判別に利用できるかは不明。</p>
+<h2><a class="header" href="#コメント" id="コメント">コメント</a></h2>
+<p><code>;</code> は行コメント開始記号であり、行末までが無視される。
+文字列値中に出現した <code>;</code> は、コメント開始記号ではなく単なる文字列の一部として解釈される。</p>
+<h1><a class="header" href="#ノード-2" id="ノード-2">ノード</a></h1>
+<p>ノードのテキスト表現には2種類の形式があり、条件次第でどちらを利用すべきかが決まる。</p>
+<h2><a class="header" href="#属性がないか子ノードを持つ場合" id="属性がないか子ノードを持つ場合">属性がないか子ノードを持つ場合</a></h2>
+<p>ひとつは通常の形式で、以下のような形である。</p>
+<pre><code class="language-text">NodeName attr1, attr2, attr3, ... {
+	; ここに子ノード
+}
+</code></pre>
+<p>子ノードは適宜タブ文字などでインデントされているが、これが必要なものかは不明。</p>
+<p>この形式は、属性を1つも持たないか、または子ノードを1つ以上持つようなノードで利用される。
+属性を持たない場合、以下のようになる。</p>
+<pre><code class="language-text">NodeName  {
+	; ここに子ノード
+}
+</code></pre>
+<p>FBX SDK から出力されたデータでは、ノード名と <code>{</code> の間に空白文字が2つ入っている。
+これが読み込みでも2つである必要があるかは不明。</p>
+<p>子ノードを持たない場合、以下のような形になる。</p>
+<pre><code class="language-text">NodeName attr1, attr2, attr3, ... {
+}
+</code></pre>
+<p><code>{</code> と <code>}</code> の間に改行が必ず入る。</p>
+<h2><a class="header" href="#属性を持ち子ノードがない場合" id="属性を持ち子ノードがない場合">属性を持ち子ノードがない場合</a></h2>
+<p>もうひとつは省略された形式で、以下のような形である。</p>
+<pre><code class="language-text">NodeName attr1, attr2, attr3, ...
+</code></pre>
+<p><code>{</code> 〜 <code>}</code> が省略された形である。
+この形式では属性は必ず存在する。</p>
+<h1><a class="header" href="#属性-1" id="属性-1">属性</a></h1>
+<p>属性には大雑把に以下の3種類がある。</p>
+<ul>
+<li><a href="fbx-7x/text-syntax/attribute.html#boolean">真偽値</a></li>
+<li><a href="fbx-7x/text-syntax/attribute.html#number">数値</a>
+<ul>
+<li>整数と浮動小数点数は区別されない。</li>
+</ul>
+</li>
+<li><a href="fbx-7x/text-syntax/attribute.html#string">文字列</a>
+<ul>
+<li>バイナリも文字列の応用で表現される。</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#真偽値span-idboolean-----span-1" id="真偽値span-idboolean-----span-1">真偽値<span id="boolean"><!-- --></span></a></h2>
+<p>真偽値は ASCII アルファベット1文字で表現される。
+この対応関係は <a href="fbx-7x/text-syntax/../binary-syntax/value.html#boolean">FBX バイナリ形式と同じ</a>である。</p>
+<table><thead><tr><th>論理的な値</th><th>文字</th></tr></thead><tbody>
+<tr><td><code>false</code></td><td><code>T</code></td></tr>
+<tr><td><code>true</code></td><td><code>Y</code></td></tr>
+</tbody></table>
+<p><code>T</code> と <code>Y</code> の由来が何なのかは不明。</p>
+<h2><a class="header" href="#数値span-idnumber-----span" id="数値span-idnumber-----span">数値<span id="number"><!-- --></span></a></h2>
+<p>数値は整数であるか浮動小数点数であるかに関係なく、共通の10進数記法で表現される。
+すなわち、 <code>0</code> のような値があったとき、スキーマなしにこれが整数であるか浮動小数点数であるかを判別する術はない。</p>
+<p><code>0</code>, <code>42</code>, <code>-0</code>, <code>123E-12</code> のような記法が観測されている。
+<code>-0</code> や <code>123E-12</code> のような記法は浮動小数点数由来のものと思われるが、これを整数としてパースすべきかは不明。</p>
+<p><code>123E-12</code> はおそらく 123×10<sup>-12</sup> である。</p>
+<h2><a class="header" href="#配列span-idarray-----span" id="配列span-idarray-----span">配列<span id="array"><!-- --></span></a></h2>
+<p>配列は、擬似的にノードのように表現される。</p>
+<p>以下は、属性として12要素の数値の配列ひとつだけを持つ <code>Edges</code> という名前のノードの例である。</p>
+<pre><code class="language-text">Edges: *12 {
+	a: 0,1,2,3,4,5,6,7,8,10,14,18
+}
+</code></pre>
+<p><code>a</code> は array の略だろうか。</p>
+<p><code>a:</code> 以降に並べられる値は、末尾にコンマを持つことも持たないこともある。
+規則があるかは不明。</p>
+<h2><a class="header" href="#文字列span-idstring-----span" id="文字列span-idstring-----span">文字列<span id="string"><!-- --></span></a></h2>
+<p>文字列は <code>&quot;foo bar&quot;</code> のように、 ASCII の半角ダブルクォートで括られた形で表現される。
+一部の文字についてエスケープが行われる。</p>
+<table><thead><tr><th>元の文字</th><th>元の文字の ASCII コード</th><th>エスケープ後文字列</th></tr></thead><tbody>
+<tr><td><code>&quot;</code></td><td><code>0x22</code></td><td><code>&amp;quot;</code></td></tr>
+<tr><td>LF</td><td><code>0x0a</code></td><td><code>&amp;lf;</code></td></tr>
+<tr><td>CR</td><td><code>0x0d</code></td><td><code>&amp;cr;</code></td></tr>
+</tbody></table>
+<p>これら以外の文字列についてはエスケープ等は行われない。
+少なくとも ASCII 範囲 (<code>0x00</code> 〜 <code>0x7f</code>) では FBX SDK 2018.1 で上記のもの以外のエスケープが行われないことを確認した。
+UTF-8 でエンコードされた日本語の文字列なども、エスケープなしにそのままテキストファイル中に出現する。</p>
+<p>ここで注意すべきなのは、少なくとも FBX SDK 2016 では文字 <code>&amp;</code> 自体がエスケープされないことである。
+これが仕様か実装のバグかは不明だが、 <code>&amp;quot;</code> のような文字列自体を含む文字列は、書き込んだ値と異なる値が読まれることになる。
+たとえば <code>esc&amp;quot;esc, raw&quot;raw</code> という文字列を FBX テキスト形式で出力すると、ファイル上では <code>&quot;esc&amp;quot;esc, raw&amp;quot;raw&quot; のような表現になる。 これを再度読み込むと、 </code>esc&quot;esc, raw&quot;raw` という文字列になる。</p>
+<h2><a class="header" href="#バイナリspan-idbinary-----span" id="バイナリspan-idbinary-----span">バイナリ<span id="binary"><!-- --></span></a></h2>
+<p>FBX テキスト形式でバイナリデータを保持する必要のある場面は極めて限定的である。
+バイナリしか持たない <code>FileId</code><!-- TODO: リンク --> のようなノードはそもそもテキスト形式では存在しないし、テクスチャ等の埋め込みはそもそもテキスト形式では不可能である。</p>
+<p>ユーザ定義のプロパティ<!-- TODO: リンク -->としてバイナリを与えたとき、バイナリデータは<a href="fbx-7x/text-syntax/attribute.html#array">配列</a>と類似した、擬似的なノード風の構文で表現される。</p>
+<pre><code class="language-text">P: &quot;MyBlob&quot;, &quot;Blob&quot;, &quot;&quot;, &quot;U&quot;,8 {
+	BinaryData: &quot;cG95b3BveW8=&quot;
+}
+</code></pre>
+<p>データ部は base64 でエンコードされた文字列である。
+62 と 63 用の記号としては <code>+</code> と <code>/</code> が用いられる。</p>
+<p>文字列が長すぎる場合、 base64 エンコード後の文字列で4の倍数文字ごとに分割が行われる。
+以下は分割の例である。
+(通常4文字毎での分割は行われず、3584文字などそこそこ長い単位で分割される。)</p>
+<pre><code class="language-text">P: &quot;MyBlob&quot;, &quot;Blob&quot;, &quot;&quot;, &quot;U&quot;,8 {
+	BinaryData: &quot;cG95&quot;,
+ &quot;b3Bv&quot;,
+ &quot;eW8=&quot;
+}
+</code></pre>
+<p>分割後の2行目以降の各行先頭に空白文字がひとつ入っている。
+これが必要かは不明。</p>
+<p>分割されていた場合、最終行末尾のコンマが許されるかは不明。</p>
+<h1><a class="header" href="#スキーマ" id="スキーマ">スキーマ</a></h1>
+<p>本節では、文法に従って読み取られた低レベルな構造を 3D コンテンツとして解釈する方法や、構造への意味の割り当てなどを解説する。</p>
+<p>TODO: これから書く。</p>
+<h1><a class="header" href="#参考文献" id="参考文献">参考文献</a></h1>
+<ul>
+<li><a href="https://code.blender.org/2013/08/fbx-binary-file-format-specification/">FBX binary file format specification — Blender Developers Blog</a>
+<ul>
+<li>FBX 7.4 のバイナリ形式の文法について網羅的な解説。</li>
+<li>本書ではこの記事とは一部異なる用語を用いている (特に node record, null record, property など)。</li>
+<li>一部に古い情報 (FBX 7.5 でヘッダが変化したことなど。コメントで指摘されている) や誤った情報 (真偽値のバイナリ表現について) がある。</li>
+</ul>
+</li>
+<li>FBX SDK のリファレンス
+<ul>
+<li>バージョン毎に URI が異なる、スクリプトやヘッダ・フッタマシマシで滅茶苦茶重いなどいろいろ難があるが、一応公式 SDK の公式ドキュメント。</li>
+<li>基礎的な概念が解説されていることがあるので、 (C++ リファレンスではない方の文書に) 一通り目を通すことをおすすめしたい。</li>
+</ul>
+</li>
+<li><a href="https://banexdevblog.wordpress.com/2014/06/23/a-quick-tutorial-about-the-fbx-ascii-format/">A quick tutorial about the FBX ASCII format – Banex Developer Blog</a>
+<ul>
+<li>FBX テキスト形式の文法とスキーマの一部についての解説。</li>
+<li><code>ReferenceInformationType</code> と <code>MappingInformationType</code> についての解説が図付きで特にわかりやすい。
+ジオメトリ (メッシュ) を解釈したいならこの図は必見。</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
