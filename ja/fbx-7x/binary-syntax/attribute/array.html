@@ -136,29 +136,32 @@
                     <main>
                         <h1 id="配列型"><a class="header" href="#配列型">配列型</a></h1>
 <p>配列型は以下のような追加ヘッダを持つ。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="#num-elems">要素数</a></td><td>4 bytes</td><td></td></tr>
 <tr><td><a href="#encoding">エンコーディング</a></td><td>4 bytes</td><td>圧縮形式など</td></tr>
 <tr><td><a href="#bytelen">データのバイト長</a></td><td>4 bytes</td><td>ファイル中に占める長さ</td></tr>
 </tbody></table>
+</div>
 <p>よって属性全体としては以下のようになる。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
 <tr><td><a href="README.html#type-codes">型コード</a></td><td>1 byte</td></tr>
 <tr><td><a href="#num-elems">要素数</a></td><td>4 bytes</td></tr>
 <tr><td><a href="#encoding">エンコーディング</a></td><td>4 bytes</td></tr>
 <tr><td><a href="#bytelen">データのバイト長</a></td><td>4 bytes</td></tr>
 <tr><td><a href="#data">データ</a></td><td>(可変長、指定された長さ)</td></tr>
 </tbody></table>
+</div>
 <h2 id="要素数"><a class="header" href="#要素数">要素数<span id="num-elems"><!-- --></span></a></h2>
 <p>配列の要素の個数である。
 バイト長ではない。</p>
 <h2 id="エンコーディング"><a class="header" href="#エンコーディング">エンコーディング<span id="encoding"><!-- --></span></a></h2>
 <p>配列データ本体の圧縮形式など。
 以下は一覧である。</p>
-<table><thead><tr><th>値</th><th>エンコーディング</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>値</th><th>エンコーディング</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="#encoding--0"><code>0</code></a></td><td>非圧縮</td><td>無加工</td></tr>
 <tr><td><a href="#encoding--1"><code>1</code></a></td><td>zlib 圧縮</td><td>RFC 1950</td></tr>
 </tbody></table>
+</div>
 <p>これ以外の値は観測されていないが、 FBX 形式はプロプライエタリであるため他のエンコーディングが存在する可能性は否定できない。
 とはいえ実用上はこの2つに対応すれば十分であろう。</p>
 <h3 id="0-非圧縮"><a class="header" href="#0-非圧縮">0: 非圧縮<span id="encoding--0"><!-- --></span></a></h3>

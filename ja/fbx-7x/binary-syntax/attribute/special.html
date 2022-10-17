@@ -136,15 +136,17 @@
                     <main>
                         <h1 id="特殊型"><a class="header" href="#特殊型">特殊型</a></h1>
 <p>特殊型は以下のような追加ヘッダを持つ。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="#bytelen">データのバイト長</a></td><td>4 bytes</td><td>ファイル中に占める長さ</td></tr>
 </tbody></table>
+</div>
 <p>よって属性全体としては以下のようになる。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
 <tr><td><a href="README.html#type-codes">型コード</a></td><td>1 byte</td></tr>
 <tr><td><a href="#bytelen">データのバイト長</a></td><td>4 bytes</td></tr>
 <tr><td><a href="#data">データ</a></td><td>(可変長、指定された長さ)</td></tr>
 </tbody></table>
+</div>
 <h2 id="データのバイト長"><a class="header" href="#データのバイト長">データのバイト長<span id="bytelen"><!-- --></span></a></h2>
 <p>共通ヘッダと追加ヘッダを除いた、文字列やバイナリデータ本体のバイト長。</p>
 <h2 id="データ"><a class="header" href="#データ">データ<span id="data"><!-- --></span></a></h2>

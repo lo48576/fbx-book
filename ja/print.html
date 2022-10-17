@@ -165,7 +165,7 @@
 </li>
 <li>読者は既存の FBX 読み書きのためのプログラムやライブラリの利用方法を理解する。
 <ul>
-<li>本文書では特定のプログラムやライブラリのマニュアルではない。</li>
+<li>本文書は特定のプログラムやライブラリのマニュアルではない。</li>
 </ul>
 </li>
 </ul>
@@ -189,7 +189,7 @@
 <h2 id="型の表現"><a class="header" href="#型の表現">型の表現</a></h2>
 <p>本書では原則的に、データ型の表現としてプログラミング言語 Rust の型の記法を用いる。
 具体的には、以下のようなものを用いる。</p>
-<table><thead><tr><th>表記</th><th>内容</th><th>補足・詳細</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>表記</th><th>内容</th><th>補足・詳細</th></tr></thead><tbody>
 <tr><td><code>bool</code></td><td>真偽値</td><td>値は <code>true</code> と <code>false</code> 。内部表現が <code>0</code> と <code>1</code> とは限らない。</td></tr>
 <tr><td><code>u8</code></td><td>符号なし8ビット整数</td><td></td></tr>
 <tr><td><code>u16</code></td><td>符号なし16ビット整数</td><td></td></tr>
@@ -205,6 +205,7 @@
 <tr><td><code>Vec&lt;T&gt;</code></td><td>要素数無指定の、型 <code>T</code> の配列</td><td></td></tr>
 <tr><td><code>Vec&lt;u8&gt;</code></td><td>長さ無指定のバイナリデータ</td><td>符号なし8ビット整数の配列と見做せる</td></tr>
 </tbody></table>
+</div>
 <h2 id="値の表現"><a class="header" href="#値の表現">値の表現</a></h2>
 <p>データ中に現れる数値などを記述するとき、 <code>42</code> や <code>0xff</code> や <code>3.14</code> のように表現する。
 もし桁が大きな数値であれば、読みやすさのためアンダースコア <code>_</code> を挿入することがある。
@@ -312,10 +313,11 @@ FBX データ中では、整数、文字列、バイナリといった、シン�
 たとえば、<code>u32</code> 型の値 <code>7400</code> (<code>0x00001ce8</code>) は、バイナリデータ中では <code>[e8 1c 00 00]</code> のようなバイト列で表現される。</p>
 <h2 id="真偽値"><a class="header" href="#真偽値">真偽値<span id="boolean"><!-- --></span></a></h2>
 <p><code>bool</code> は <code>true</code> か <code>false</code> の値を持つ型だが、これは FBX バイナリ形式中では (驚くべきことに) それぞれ文字 <code>Y</code> (数値 <code>0x59</code>) と文字 <code>T</code> (数値 <code>0x54</code>) で表現される。</p>
-<table><thead><tr><th>論理的な値</th><th>バイナリ表現</th><th>ASCII 対応する文字</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>論理的な値</th><th>バイナリ表現</th><th>ASCII 対応する文字</th></tr></thead><tbody>
 <tr><td><code>false</code></td><td><code>0x54</code></td><td><code>T</code></td></tr>
 <tr><td><code>true</code></td><td><code>0x59</code></td><td><code>Y</code></td></tr>
 </tbody></table>
+</div>
 <p><code>T</code> と <code>Y</code> の由来が何なのかは不明。</p>
 <p>留意すべきなのが、これらは Autodesk 公式の FBX SDK が読み書きする値であって、必ずしもすべてのソフトウェアがこれに準拠しているわけではないことだ。
 たとえば Blender 2.72b における FBX プラグインは、真偽値として <code>0x54</code> と <code>0x59</code> ではなく <code>0x00</code> と <code>0x01</code> を出力する。
@@ -323,7 +325,7 @@ FBX データ中では、整数、文字列、バイナリといった、シン�
 <p>FBX 処理系はこのような壊れた真偽値表現に遭遇した場合、 <code>0x54</code> と <code>0x59</code> のみを受け入れて FBX SDK と同様にデータを読み取るのか、偶数と奇数で判別して出力プログラムが意図した (であろう) データを読み取るのか、選択する必要がある。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ファイル構造"><a class="header" href="#ファイル構造">ファイル構造</a></h1>
 <p>FBX バイナリ形式のデータは、先頭から順に以下のような構造になっている。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/file.html#magic-number">マジックナンバー</a></td><td>23 bytes</td><td></td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/file.html#header-fbx-version">FBX バージョン</a></td><td>4 bytes</td><td></td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/file.html#toplevel-nodes">トップレベルノード</a></td><td>(可変、0個以上)</td><td>可変サイズ</td></tr>
@@ -335,6 +337,7 @@ FBX データ中では、整数、文字列、バイナリといった、シン�
 <tr><td><a href="fbx-7x/binary-syntax/file.html#footer-3">フッタ3</a></td><td>120 bytes</td><td>全て <code>0x00</code></td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/file.html#footer-4">フッタ4</a></td><td>16 bytes</td><td></td></tr>
 </tbody></table>
+</div>
 <p><a href="fbx-7x/binary-syntax/file.html#padding">パディング</a>が適切なサイズで挿入されていれば、ファイル全体は必ず16の倍数の長さを持つ。</p>
 <h2 id="マジックナンバー"><a class="header" href="#マジックナンバー">マジックナンバー<span id="magic-number"><!-- --></span></a></h2>
 <p>FBX バイナリ形式は、ファイル先頭に23バイトのマジックバイナリ <code>[4b 61 79 64 61 72 61 20 46 42 58 20 42 69 6e 61 72 79 20 20 00 1a 00]</code> を持つ。
@@ -357,11 +360,12 @@ $ hexdump -C sample-74.fbx --skip 23 --length 4
 $
 </code></pre>
 <p>バージョンと値の対応は以下のようになっている。</p>
-<table><thead><tr><th>バージョン</th><th>値 (10進数)</th><th>バイナリ表現</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>バージョン</th><th>値 (10進数)</th><th>バイナリ表現</th></tr></thead><tbody>
 <tr><td>7.3</td><td><code>7300</code></td><td><code>[84 1c 00 00]</code></td></tr>
 <tr><td>7.4</td><td><code>7400</code></td><td><code>[e8 1c 00 00]</code></td></tr>
 <tr><td>7.5</td><td><code>7500</code></td><td><code>[4c 1d 00 00]</code></td></tr>
 </tbody></table>
+</div>
 <p>バージョン x.y は 1000 × x + 100 × y で表現されているようである。
 100未満の桁が利用されている例は見たことがないため、使われているかは不明。</p>
 <h2 id="トップレベルノード"><a class="header" href="#トップレベルノード">トップレベルノード<span id="toplevel-nodes"><!-- --></span></a></h2>
@@ -414,7 +418,7 @@ fa bc ab 0f d6 c0 dc 66 b3 78 f1 82 1a f3 23 7c
 <p>本節では FBX バイナリ形式におけるノードの表現を解説する。</p>
 <p>ノードのデータ構造の概要については<a href="fbx-7x/binary-syntax/../common-structure/node.html">『共通の構造』節の『ノード』の項目</a>を参照。</p>
 <p>ひとつのノードの (子要素まで含めた) バイナリ構造は以下の通りである。</p>
-<table><thead><tr><th>内容</th><th>サイズ (FBX 7.4 まで)</th><th>サイズ (FBX 7.5 以降)</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ (FBX 7.4 まで)</th><th>サイズ (FBX 7.5 以降)</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/node.html#end-offset">終端位置</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/node.html#number-of-attributes">属性数</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/node.html#attributes-byte-len">全属性の合計バイト長</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
@@ -424,6 +428,7 @@ fa bc ab 0f d6 c0 dc 66 b3 78 f1 82 1a f3 23 7c
 <tr><td><a href="fbx-7x/binary-syntax/node.html#children">子ノード</a></td><td>可変長</td><td>可変長</td><td>0個以上</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/node.html#end-marker">ノード終端マーカー</a></td><td>0 または 13 bytes</td><td>0 または 25 bytes</td><td>特定条件を満たしたとき省略される</td></tr>
 </tbody></table>
+</div>
 <p>これらをグループ化するならば、以下のようになる。</p>
 <ul>
 <li><a href="fbx-7x/binary-syntax/node.html#header">ヘッダ</a>
@@ -478,7 +483,7 @@ fa bc ab 0f d6 c0 dc 66 b3 78 f1 82 1a f3 23 7c
 <p>ノード終端マーカーが省略される条件は、「ノードが属性を1つ以上持ち、かつ子ノードを持たない」ことである。
 これは FBX テキスト形式において子ノード群を囲むための括弧 <code>{}</code> が省略される条件と等しい。</p>
 <h3 id="長さの意味"><a class="header" href="#長さの意味">長さの意味</a></h3>
-<p>13バイトや25バイトという長さは、ちょうど<a href="fbx-7x/binary-syntax/node.html#header">ヘッダ</a>の長さ (すなわち 4+4+1 と 8+8+1) と同じである。
+<p>13バイトや25バイトという長さは、ちょうど<a href="fbx-7x/binary-syntax/node.html#header">ヘッダ</a>の長さ (すなわち 4+4+4+1 と 8+8+8+1) と同じである。
 このマーカーの存在によって、パーサは**(正しいデータならば) 理論上は**<a href="fbx-7x/binary-syntax/node.html#end-offset">終端位置</a>情報を記憶せずともノード階層を正しく把握できる。
 ノード終端マーカーは最後の子ノードの直後に続くため、子ノードのヘッダを読もうとして13バイトまたは25バイト読み、その全てが <code>0x00</code> であるかを確認することで、ノードが終わるか新たな子ノードが続くかを判別できる。</p>
 <p>ただし後述の通り複数の出力処理系に不具合が認められるため、ノード階層の把握を終端位置の記憶・照合なしに試みるべきでない。</p>
@@ -519,11 +524,12 @@ fa bc ab 0f d6 c0 dc 66 b3 78 f1 82 1a f3 23 7c
 <p>属性のデータ構造についての概要は<a href="fbx-7x/binary-syntax/attribute/../common-structure/node.html#attributes">『共通の構造』節の『ノード』節</a>を参照。</p>
 <h2 id="概要-1"><a class="header" href="#概要-1">概要<span id="abstract"><!-- --></span></a></h2>
 <p>属性は、以下のように表現される。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/index.html#value-types">型コード</a></td><td>1 byte</td><td>ASCII アルファベット</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/index.html#type-specific-headers">型特有の追加ヘッダ</a></td><td>(型による)</td><td></td></tr>
 <tr><td>値</td><td>(型による)</td><td></td></tr>
 </tbody></table>
+</div>
 <h2 id="値の型"><a class="header" href="#値の型">値の型<span id="value-types"><!-- --></span></a></h2>
 <p><a href="fbx-7x/binary-syntax/attribute/../common-structure/node.html#attributes">別の節</a>で既に解説したが再掲すると、属性の値の型は以下のいずれかである。</p>
 <ul>
@@ -557,7 +563,7 @@ fa bc ab 0f d6 c0 dc 66 b3 78 f1 82 1a f3 23 7c
 <p>型コードは属性値の型を表現する1バイトの整数 (<code>u8</code>) である。
 実際には型コードの値には ASCII のアルファベットのみが利用されている。</p>
 <p>以下は型コードの一覧である。</p>
-<table><thead><tr><th>型</th><th>型コード (ASCII)</th><th>型コード (整数)</th><th>命名由来の推測</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>型</th><th>型コード (ASCII)</th><th>型コード (整数)</th><th>命名由来の推測</th></tr></thead><tbody>
 <tr><td><code>bool</code></td><td><code>C</code></td><td><code>0x43</code></td><td>Condition の <code>C</code>?</td></tr>
 <tr><td><code>i16</code></td><td><code>Y</code></td><td><code>0x59</code></td><td>由来不明</td></tr>
 <tr><td><code>i32</code></td><td><code>I</code></td><td><code>0x49</code></td><td>Int の <code>I</code></td></tr>
@@ -572,44 +578,49 @@ fa bc ab 0f d6 c0 dc 66 b3 78 f1 82 1a f3 23 7c
 <tr><td><code>Vec&lt;u8&gt;</code></td><td><code>R</code></td><td><code>0x52</code></td><td>Raw の <code>R</code>?</td></tr>
 <tr><td><code>String</code></td><td><code>S</code></td><td><code>0x53</code></td><td>String の <code>S</code></td></tr>
 </tbody></table>
+</div>
 <h2 id="型特有の追加ヘッダ"><a class="header" href="#型特有の追加ヘッダ">型特有の追加ヘッダ<span id="type-specific-headers"><!-- --></span></a></h2>
 <p>型特有の追加ヘッダは、配列型のためのヘッダと特殊型のためのヘッダが存在する。
 プリミティブ型に追加のヘッダはない。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="プリミティブ型"><a class="header" href="#プリミティブ型">プリミティブ型</a></h1>
 <p>プリミティブ型に追加のヘッダはない。
 よって、プリミティブ型の属性は以下のように表現される。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td>型コード</td><td>1 byte</td><td>ASCII アルファベット</td></tr>
 <tr><td>値</td><td>(型による)</td><td>型コードから明らか</td></tr>
 </tbody></table>
+</div>
 <p>プリミティブ型の値のサイズは型より明らかである。</p>
 <h2 id="値"><a class="header" href="#値">値</a></h2>
 <p>値は例に漏れずリトルエンディアンで表現される。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="配列型"><a class="header" href="#配列型">配列型</a></h1>
 <p>配列型は以下のような追加ヘッダを持つ。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#num-elems">要素数</a></td><td>4 bytes</td><td></td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding">エンコーディング</a></td><td>4 bytes</td><td>圧縮形式など</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#bytelen">データのバイト長</a></td><td>4 bytes</td><td>ファイル中に占める長さ</td></tr>
 </tbody></table>
+</div>
 <p>よって属性全体としては以下のようになる。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/README.html#type-codes">型コード</a></td><td>1 byte</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#num-elems">要素数</a></td><td>4 bytes</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding">エンコーディング</a></td><td>4 bytes</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#bytelen">データのバイト長</a></td><td>4 bytes</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#data">データ</a></td><td>(可変長、指定された長さ)</td></tr>
 </tbody></table>
+</div>
 <h2 id="要素数"><a class="header" href="#要素数">要素数<span id="num-elems"><!-- --></span></a></h2>
 <p>配列の要素の個数である。
 バイト長ではない。</p>
 <h2 id="エンコーディング"><a class="header" href="#エンコーディング">エンコーディング<span id="encoding"><!-- --></span></a></h2>
 <p>配列データ本体の圧縮形式など。
 以下は一覧である。</p>
-<table><thead><tr><th>値</th><th>エンコーディング</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>値</th><th>エンコーディング</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding--0"><code>0</code></a></td><td>非圧縮</td><td>無加工</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/array.html#encoding--1"><code>1</code></a></td><td>zlib 圧縮</td><td>RFC 1950</td></tr>
 </tbody></table>
+</div>
 <p>これ以外の値は観測されていないが、 FBX 形式はプロプライエタリであるため他のエンコーディングが存在する可能性は否定できない。
 とはいえ実用上はこの2つに対応すれば十分であろう。</p>
 <h3 id="0-非圧縮"><a class="header" href="#0-非圧縮">0: 非圧縮<span id="encoding--0"><!-- --></span></a></h3>
@@ -625,15 +636,17 @@ zlib ヘッダが必要である (つまり生の deflate ストリームでは�
 パディングや順序の入れ替えなどは一切ない。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="特殊型"><a class="header" href="#特殊型">特殊型</a></h1>
 <p>特殊型は以下のような追加ヘッダを持つ。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/special.html#bytelen">データのバイト長</a></td><td>4 bytes</td><td>ファイル中に占める長さ</td></tr>
 </tbody></table>
+</div>
 <p>よって属性全体としては以下のようになる。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th></tr></thead><tbody>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/README.html#type-codes">型コード</a></td><td>1 byte</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/special.html#bytelen">データのバイト長</a></td><td>4 bytes</td></tr>
 <tr><td><a href="fbx-7x/binary-syntax/attribute/special.html#data">データ</a></td><td>(可変長、指定された長さ)</td></tr>
 </tbody></table>
+</div>
 <h2 id="データのバイト長-1"><a class="header" href="#データのバイト長-1">データのバイト長<span id="bytelen"><!-- --></span></a></h2>
 <p>共通ヘッダと追加ヘッダを除いた、文字列やバイナリデータ本体のバイト長。</p>
 <h2 id="データ-1"><a class="header" href="#データ-1">データ<span id="data"><!-- --></span></a></h2>
@@ -754,10 +767,11 @@ children = *comment node *(node / comment)
 <h2 id="真偽値-1"><a class="header" href="#真偽値-1">真偽値<span id="boolean"><!-- --></span></a></h2>
 <p>真偽値は ASCII アルファベット1文字で表現される。
 この対応関係は <a href="fbx-7x/text-syntax/../binary-syntax/value.html#boolean">FBX バイナリ形式と同じ</a>である。</p>
-<table><thead><tr><th>論理的な値</th><th>文字</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>論理的な値</th><th>文字</th></tr></thead><tbody>
 <tr><td><code>false</code></td><td><code>T</code></td></tr>
 <tr><td><code>true</code></td><td><code>Y</code></td></tr>
 </tbody></table>
+</div>
 <p><code>T</code> と <code>Y</code> の由来が何なのかは不明。</p>
 <h2 id="数値"><a class="header" href="#数値">数値<span id="number"><!-- --></span></a></h2>
 <p>数値は整数であるか浮動小数点数であるかに関係なく、共通の10進数記法で表現される。
@@ -778,11 +792,12 @@ children = *comment node *(node / comment)
 <h2 id="文字列"><a class="header" href="#文字列">文字列<span id="string"><!-- --></span></a></h2>
 <p>文字列は <code>&quot;foo bar&quot;</code> のように、 ASCII の半角ダブルクォートで括られた形で表現される。
 一部の文字についてエスケープが行われる。</p>
-<table><thead><tr><th>元の文字</th><th>元の文字の ASCII コード</th><th>エスケープ後文字列</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>元の文字</th><th>元の文字の ASCII コード</th><th>エスケープ後文字列</th></tr></thead><tbody>
 <tr><td><code>&quot;</code></td><td><code>0x22</code></td><td><code>&amp;quot;</code></td></tr>
 <tr><td>LF</td><td><code>0x0a</code></td><td><code>&amp;lf;</code></td></tr>
 <tr><td>CR</td><td><code>0x0d</code></td><td><code>&amp;cr;</code></td></tr>
 </tbody></table>
+</div>
 <p>これら以外の文字列についてはエスケープ等は行われない。
 少なくとも ASCII 範囲 (<code>0x00</code> 〜 <code>0x7f</code>) では FBX SDK 2018.1 で上記のもの以外のエスケープが行われないことを確認した。
 UTF-8 でエンコードされた日本語の文字列なども、エスケープなしにそのままテキストファイル中に出現する。</p>

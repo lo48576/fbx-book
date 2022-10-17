@@ -140,11 +140,12 @@
 <p>属性のデータ構造についての概要は<a href="../common-structure/node.html#attributes">『共通の構造』節の『ノード』節</a>を参照。</p>
 <h2 id="概要"><a class="header" href="#概要">概要<span id="abstract"><!-- --></span></a></h2>
 <p>属性は、以下のように表現される。</p>
-<table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="#value-types">型コード</a></td><td>1 byte</td><td>ASCII アルファベット</td></tr>
 <tr><td><a href="#type-specific-headers">型特有の追加ヘッダ</a></td><td>(型による)</td><td></td></tr>
 <tr><td>値</td><td>(型による)</td><td></td></tr>
 </tbody></table>
+</div>
 <h2 id="値の型"><a class="header" href="#値の型">値の型<span id="value-types"><!-- --></span></a></h2>
 <p><a href="../common-structure/node.html#attributes">別の節</a>で既に解説したが再掲すると、属性の値の型は以下のいずれかである。</p>
 <ul>
@@ -178,7 +179,7 @@
 <p>型コードは属性値の型を表現する1バイトの整数 (<code>u8</code>) である。
 実際には型コードの値には ASCII のアルファベットのみが利用されている。</p>
 <p>以下は型コードの一覧である。</p>
-<table><thead><tr><th>型</th><th>型コード (ASCII)</th><th>型コード (整数)</th><th>命名由来の推測</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>型</th><th>型コード (ASCII)</th><th>型コード (整数)</th><th>命名由来の推測</th></tr></thead><tbody>
 <tr><td><code>bool</code></td><td><code>C</code></td><td><code>0x43</code></td><td>Condition の <code>C</code>?</td></tr>
 <tr><td><code>i16</code></td><td><code>Y</code></td><td><code>0x59</code></td><td>由来不明</td></tr>
 <tr><td><code>i32</code></td><td><code>I</code></td><td><code>0x49</code></td><td>Int の <code>I</code></td></tr>
@@ -193,6 +194,7 @@
 <tr><td><code>Vec&lt;u8&gt;</code></td><td><code>R</code></td><td><code>0x52</code></td><td>Raw の <code>R</code>?</td></tr>
 <tr><td><code>String</code></td><td><code>S</code></td><td><code>0x53</code></td><td>String の <code>S</code></td></tr>
 </tbody></table>
+</div>
 <h2 id="型特有の追加ヘッダ"><a class="header" href="#型特有の追加ヘッダ">型特有の追加ヘッダ<span id="type-specific-headers"><!-- --></span></a></h2>
 <p>型特有の追加ヘッダは、配列型のためのヘッダと特殊型のためのヘッダが存在する。
 プリミティブ型に追加のヘッダはない。</p>

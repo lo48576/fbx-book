@@ -140,10 +140,11 @@
 たとえば、<code>u32</code> 型の値 <code>7400</code> (<code>0x00001ce8</code>) は、バイナリデータ中では <code>[e8 1c 00 00]</code> のようなバイト列で表現される。</p>
 <h2 id="真偽値"><a class="header" href="#真偽値">真偽値<span id="boolean"><!-- --></span></a></h2>
 <p><code>bool</code> は <code>true</code> か <code>false</code> の値を持つ型だが、これは FBX バイナリ形式中では (驚くべきことに) それぞれ文字 <code>Y</code> (数値 <code>0x59</code>) と文字 <code>T</code> (数値 <code>0x54</code>) で表現される。</p>
-<table><thead><tr><th>論理的な値</th><th>バイナリ表現</th><th>ASCII 対応する文字</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>論理的な値</th><th>バイナリ表現</th><th>ASCII 対応する文字</th></tr></thead><tbody>
 <tr><td><code>false</code></td><td><code>0x54</code></td><td><code>T</code></td></tr>
 <tr><td><code>true</code></td><td><code>0x59</code></td><td><code>Y</code></td></tr>
 </tbody></table>
+</div>
 <p><code>T</code> と <code>Y</code> の由来が何なのかは不明。</p>
 <p>留意すべきなのが、これらは Autodesk 公式の FBX SDK が読み書きする値であって、必ずしもすべてのソフトウェアがこれに準拠しているわけではないことだ。
 たとえば Blender 2.72b における FBX プラグインは、真偽値として <code>0x54</code> と <code>0x59</code> ではなく <code>0x00</code> と <code>0x01</code> を出力する。

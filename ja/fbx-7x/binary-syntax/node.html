@@ -138,7 +138,7 @@
 <p>本節では FBX バイナリ形式におけるノードの表現を解説する。</p>
 <p>ノードのデータ構造の概要については<a href="../common-structure/node.html">『共通の構造』節の『ノード』の項目</a>を参照。</p>
 <p>ひとつのノードの (子要素まで含めた) バイナリ構造は以下の通りである。</p>
-<table><thead><tr><th>内容</th><th>サイズ (FBX 7.4 まで)</th><th>サイズ (FBX 7.5 以降)</th><th>補足</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>内容</th><th>サイズ (FBX 7.4 まで)</th><th>サイズ (FBX 7.5 以降)</th><th>補足</th></tr></thead><tbody>
 <tr><td><a href="#end-offset">終端位置</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
 <tr><td><a href="#number-of-attributes">属性数</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
 <tr><td><a href="#attributes-byte-len">全属性の合計バイト長</a></td><td>4 bytes</td><td>8 bytes</td><td></td></tr>
@@ -148,6 +148,7 @@
 <tr><td><a href="#children">子ノード</a></td><td>可変長</td><td>可変長</td><td>0個以上</td></tr>
 <tr><td><a href="#end-marker">ノード終端マーカー</a></td><td>0 または 13 bytes</td><td>0 または 25 bytes</td><td>特定条件を満たしたとき省略される</td></tr>
 </tbody></table>
+</div>
 <p>これらをグループ化するならば、以下のようになる。</p>
 <ul>
 <li><a href="#header">ヘッダ</a>
@@ -202,7 +203,7 @@
 <p>ノード終端マーカーが省略される条件は、「ノードが属性を1つ以上持ち、かつ子ノードを持たない」ことである。
 これは FBX テキスト形式において子ノード群を囲むための括弧 <code>{}</code> が省略される条件と等しい。</p>
 <h3 id="長さの意味"><a class="header" href="#長さの意味">長さの意味</a></h3>
-<p>13バイトや25バイトという長さは、ちょうど<a href="#header">ヘッダ</a>の長さ (すなわち 4+4+1 と 8+8+1) と同じである。
+<p>13バイトや25バイトという長さは、ちょうど<a href="#header">ヘッダ</a>の長さ (すなわち 4+4+4+1 と 8+8+8+1) と同じである。
 このマーカーの存在によって、パーサは**(正しいデータならば) 理論上は**<a href="#end-offset">終端位置</a>情報を記憶せずともノード階層を正しく把握できる。
 ノード終端マーカーは最後の子ノードの直後に続くため、子ノードのヘッダを読もうとして13バイトまたは25バイト読み、その全てが <code>0x00</code> であるかを確認することで、ノードが終わるか新たな子ノードが続くかを判別できる。</p>
 <p>ただし後述の通り複数の出力処理系に不具合が認められるため、ノード階層の把握を終端位置の記憶・照合なしに試みるべきでない。</p>

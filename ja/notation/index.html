@@ -140,7 +140,7 @@
 <h2 id="型の表現"><a class="header" href="#型の表現">型の表現</a></h2>
 <p>本書では原則的に、データ型の表現としてプログラミング言語 Rust の型の記法を用いる。
 具体的には、以下のようなものを用いる。</p>
-<table><thead><tr><th>表記</th><th>内容</th><th>補足・詳細</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>表記</th><th>内容</th><th>補足・詳細</th></tr></thead><tbody>
 <tr><td><code>bool</code></td><td>真偽値</td><td>値は <code>true</code> と <code>false</code> 。内部表現が <code>0</code> と <code>1</code> とは限らない。</td></tr>
 <tr><td><code>u8</code></td><td>符号なし8ビット整数</td><td></td></tr>
 <tr><td><code>u16</code></td><td>符号なし16ビット整数</td><td></td></tr>
@@ -156,6 +156,7 @@
 <tr><td><code>Vec&lt;T&gt;</code></td><td>要素数無指定の、型 <code>T</code> の配列</td><td></td></tr>
 <tr><td><code>Vec&lt;u8&gt;</code></td><td>長さ無指定のバイナリデータ</td><td>符号なし8ビット整数の配列と見做せる</td></tr>
 </tbody></table>
+</div>
 <h2 id="値の表現"><a class="header" href="#値の表現">値の表現</a></h2>
 <p>データ中に現れる数値などを記述するとき、 <code>42</code> や <code>0xff</code> や <code>3.14</code> のように表現する。
 もし桁が大きな数値であれば、読みやすさのためアンダースコア <code>_</code> を挿入することがある。

@@ -152,10 +152,11 @@
 <h2 id="真偽値"><a class="header" href="#真偽値">真偽値<span id="boolean"><!-- --></span></a></h2>
 <p>真偽値は ASCII アルファベット1文字で表現される。
 この対応関係は <a href="../binary-syntax/value.html#boolean">FBX バイナリ形式と同じ</a>である。</p>
-<table><thead><tr><th>論理的な値</th><th>文字</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>論理的な値</th><th>文字</th></tr></thead><tbody>
 <tr><td><code>false</code></td><td><code>T</code></td></tr>
 <tr><td><code>true</code></td><td><code>Y</code></td></tr>
 </tbody></table>
+</div>
 <p><code>T</code> と <code>Y</code> の由来が何なのかは不明。</p>
 <h2 id="数値"><a class="header" href="#数値">数値<span id="number"><!-- --></span></a></h2>
 <p>数値は整数であるか浮動小数点数であるかに関係なく、共通の10進数記法で表現される。
@@ -176,11 +177,12 @@
 <h2 id="文字列"><a class="header" href="#文字列">文字列<span id="string"><!-- --></span></a></h2>
 <p>文字列は <code>&quot;foo bar&quot;</code> のように、 ASCII の半角ダブルクォートで括られた形で表現される。
 一部の文字についてエスケープが行われる。</p>
-<table><thead><tr><th>元の文字</th><th>元の文字の ASCII コード</th><th>エスケープ後文字列</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>元の文字</th><th>元の文字の ASCII コード</th><th>エスケープ後文字列</th></tr></thead><tbody>
 <tr><td><code>&quot;</code></td><td><code>0x22</code></td><td><code>&amp;quot;</code></td></tr>
 <tr><td>LF</td><td><code>0x0a</code></td><td><code>&amp;lf;</code></td></tr>
 <tr><td>CR</td><td><code>0x0d</code></td><td><code>&amp;cr;</code></td></tr>
 </tbody></table>
+</div>
 <p>これら以外の文字列についてはエスケープ等は行われない。
 少なくとも ASCII 範囲 (<code>0x00</code> 〜 <code>0x7f</code>) では FBX SDK 2018.1 で上記のもの以外のエスケープが行われないことを確認した。
 UTF-8 でエンコードされた日本語の文字列なども、エスケープなしにそのままテキストファイル中に出現する。</p>
